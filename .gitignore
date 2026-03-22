@@ -1,0 +1,8 @@
+# Test rule books (PDFs)
+Test Rule Books/
+
+# Skills generated from test rule books
+Basic Fantasy RPG/rulebook/
+
+# Claude memory
+.claude/
