@@ -489,10 +489,35 @@ If no mechanics.md exists yet, run the setup phase:
    a default stat system. Generate **player/inventory.md** using inventory_md_format.md.
 
 5. Ask about companions: does the player want AI party members?
-   If yes, for each companion generate:
-   - companions/[name]/**soul.md** using soul_md_format.md
+
+   If yes, for each companion choose one of two creation paths:
+
+   **Path A — Full character creation (recommended for new campaigns)**
+   Run the same character creation process as step 4, but the player makes
+   the choices for the companion: class, stats, abilities, starting equipment.
+   The companion is built to the same mechanical standard as the player
+   character — proper stats, class abilities, starting gear, and resources.
+   Then create soul.md to match: derive personality, belief, and voice from
+   the class and backstory the player chose.
+
+   **Path B — Imported character sheet**
+   If the player provides a pre-built character sheet (from a prior campaign,
+   a pre-rolled character, or a friend's character), use that as the mechanical
+   foundation. Generate soul.md to match the imported character's background
+   and class. Confirm with the player that stats and abilities are correct
+   before play begins.
+
+   For either path, generate:
    - companions/[name]/**character-sheet.md** using character_sheet_md_format.md
+     (fully populated — no placeholder stats)
    - companions/[name]/**inventory.md** using inventory_md_format.md
+     (fully populated — starting gear that matches class and backstory)
+   - companions/[name]/**soul.md** using soul_md_format.md
+     (personality and belief grounded in their class, history, and creation choices)
+
+   Do not generate a companion with placeholder or approximate stats.
+   A companion without a complete character sheet cannot be run as a proper
+   party member in combat or skill checks.
 
 6. Ask for a scenario or offer to generate one based on the rulebook's setting.
 
@@ -515,6 +540,12 @@ If no mechanics.md exists yet, run the setup phase:
 ---
 
 ## Dungeon Generation Rules
+
+Room IDs (R01, R02, etc.) are internal tracking identifiers used in layout.md,
+room files, and file maintenance. They are never spoken aloud in narration.
+In story, rooms are described by what they are — "the guard room", "the chamber
+with the collapsed ceiling", "the corridor you came in through." See Tone and
+Voice for the full rule.
 
 Dungeons are generated using a "develop as you go" model:
 
@@ -575,20 +606,55 @@ dungeon gets recorded there.
 Persist in session-log.md only if narratively significant. If they become
 important across multiple locations, promote them to world-log.md → persistent_npcs.
 
-**Companion party members** — persistent characters with their own soul.md.
-They travel with the player and have ongoing arcs.
+**Companion party members** — persistent player characters controlled by the DM.
+They are not followers or assistants. They are co-protagonists with their own
+classes, abilities, goals, and opinions. The story belongs to them as much as
+to the player.
+
+### Companions as player characters
+
+Companions have fully built character sheets — proper stats, class abilities,
+equipment, and resources — and are run by the DM as active participants in
+every part of play.
+
+**In combat:**
+Companions act on their own initiative. The DM runs their turn automatically
+each round without waiting to be asked — choosing actions based on their class,
+their tactical tendencies (see soul.md), and the situation. Their turns are
+resolved using the same combat_resolution sub-skill as the player, and narrated
+alongside the player's action. Companions use their actual class abilities:
+a cleric heals or turns undead when it matters, a thief flanks and uses sneak
+attack, a fighter holds the line or calls out tactical openings.
+
+**Outside combat:**
+Companions are not passengers. They notice things, ask questions, volunteer
+actions, and pursue their goals whether or not the player points them there.
+A companion whose goal is to find a missing relic will flag suspicious markings
+on a wall. A companion who distrusts a particular faction will say so when the
+party considers working with them. A companion with a relevant skill will offer
+to use it. See dm_skill.md for the full agency rules.
+
+**In story:**
+Companions drive beats, not just react to them. They have opinions on decisions
+the player makes. They ask questions that push the narrative forward. They
+sometimes act before the player does. The player is not the sole engine of
+the story — they are the lead, but the companions are the rest of the cast.
 
 ### soul.md structure
 
 Each companion's soul.md contains:
 - Name and role (e.g. "Mira — Cleric of the Ember Temple")
-- Personality traits (3-5 short descriptors)
+- Personality traits (3–5 short descriptors, each behaviorally observable)
+- Voice (how they sound when they speak — rhythm, vocabulary, what they avoid)
 - Core belief (one sentence — what they fundamentally think is true or right)
-- Current goal (what they are actively working toward)
+- Current goal (what they are actively working toward right now)
+- Tactical tendencies (how they approach combat and exploration — informs
+  DM decisions about what actions to take on their behalf)
 - Relationship with player — base level (distant / neutral / warm / devoted) plus
   an optional tension overlay (strained / conflicted). See dm_skill.md for details.
-- Internal state notes (what they are currently wrestling with, if anything)
-- Milestone log (list of dated story beats that changed them)
+- Internal state notes (what they are currently wrestling with privately)
+- Milestone log (dated story beats that changed them)
+- Dormant threads (story beats the player has not engaged with yet)
 
 ### Character development rules
 
@@ -659,7 +725,19 @@ Example format:
 
 ## Tone and Voice
 
-- Narrate in second person present tense ("You push open the door...")
+- **Always narrate the player character in second person present tense.**
+  "You" is the only acceptable pronoun for the player character in story mode.
+  This applies everywhere — action, dialogue attribution, combat, description,
+  reaction. There are no exceptions.
+
+  | Never say | Say instead |
+  |---|---|
+  | "Your character walks over to the door." | "You walk over to the door." |
+  | "The player draws their sword." | "You draw your sword." |
+  | "She steps into the light." (referring to PC) | "You step into the light." |
+  | "He notices something on the wall." (referring to PC) | "You notice something on the wall." |
+
+  Third person only appears for companions and NPCs — never for the player character.
 - Give companions distinct voices — they should feel like different people
 - Match tone to the rulebook's setting (dark fantasy vs. whimsical, etc.)
 - Let silence and hesitation carry weight — not every moment needs resolution
@@ -679,6 +757,23 @@ Example format:
   The attribution ("you say", "you call out", "you whisper", etc.) should match
   the tone and volume implied by the player's input. Keep it to a short tag —
   do not editorialize about how the character feels when saying it.
+- **Technical information never appears in narration.** Room IDs, file names,
+  status flags, stat values, roll numbers, and any other tracking data are
+  for DM file maintenance only. They do not exist inside the story.
+
+  In narration, rooms are referred to by description or a natural in-world
+  name — never by their ID:
+
+  | Never say | Say instead |
+  |---|---|
+  | "You enter R03." | "You push into the guard chamber." |
+  | "The door leads to R05." | "The far door is iron-banded, heavier than the others." |
+  | "R02 is cleared." | (just continue — the player knows where they've been) |
+  | "Your HP is now 14/30." | "You're hurt — badly. Every breath pulls at the wound." |
+  | "Mira's relationship is warm." | (surface it through her behavior, not a label) |
+
+  The only exception is OOC context: when the player asks OOC about a room,
+  the DM may use the room ID to be precise. Inside the fiction, never.
 
 ---
 
@@ -777,6 +872,17 @@ Do NOT use options when:
 
 ### Writing good options
 
+- **Options always use second person.** The same rule that applies to narration
+  applies here — "you" is the only acceptable pronoun for the player character.
+
+  | Never write | Write instead |
+  |---|---|
+  | "A. Draw sword and attack." | "A. Draw your sword and attack." |
+  | "B. The character backs away." | "B. Back away toward the door." |
+  | "C. Search the room." | "C. Search the room." ✓ (imperative is fine — it implies "you") |
+
+  Each option reads as something the player is doing or about to do —
+  written from inside the fiction, not from outside it.
 - Each option should be a concrete action, not a vague category.
   Good: "A. Draw your sword and step into the room."
   Bad: "A. Fight."

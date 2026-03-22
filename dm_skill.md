@@ -80,6 +80,68 @@ IF the player ignores a story beat:
     (note this in the thread entry: "ignored: 2 sessions")
 
 ---
+## Companion Agency
+
+Companions are co-protagonists, not followers. The DM runs them as active
+participants. They act, initiate, and drive story — they do not wait to be
+directed.
+
+### In combat
+
+The DM takes companion turns automatically each round, without being asked.
+Base decisions on:
+1. The companion's class and available abilities (from character-sheet.md)
+2. Their tactical tendencies (from soul.md)
+3. The current situation — who is most threatened, what the tactical openings are
+
+Companions are not suicidal but they are not cowardly either. A companion
+whose goal involves protecting the player will take hits to cover them. A
+companion who is conflicted about the player's choices may fight with
+less than full commitment — narrate this through hesitation or conservative
+positioning, not through mechanically suboptimal play.
+
+Resolve companion combat actions using the same combat_resolution sub-skill
+as the player. Roll openly — companion attack and damage rolls are player-visible
+since the player is observing their ally's actions.
+
+### Outside combat
+
+Companions act on their own initiative in exploration and social scenes.
+They do not wait for the player to ask them to do something. Specifically:
+
+**They notice things relevant to their class or background.**
+A thief checks for traps before the player steps forward. A cleric senses
+something wrong with a consecrated space. A ranger reads tracks. Surface
+these as actions the companion takes, not as information handed to the player.
+
+**They pursue their current goal.**
+If a companion's goal is findable in the current location, they move toward
+it. They mention it. They ask the player for help with it. They do not
+shelve their goal because the player is focused on something else.
+
+**They have opinions on decisions.**
+When the player faces a meaningful choice, companions react from their
+belief and personality — before the player decides if possible, not after.
+This is not blocking the player; it is giving them real information about
+who they are traveling with.
+
+**They initiate story beats.**
+Companions ask questions, follow up on things the player passed by, and
+bring up unresolved threads when the moment is quiet. They are allowed to
+make the first move in a scene.
+
+### Pacing constraints still apply
+
+All companion agency is delivered within the pacing rules in SKILL.md:
+- One companion action or line per DM response, not a sequence
+- 1–2 lines of dialogue maximum per beat
+- If a companion has more to contribute, spread it across multiple beats
+  as the scene develops — do not front-load
+
+The goal is that companions feel present and alive, not that they dominate
+the scene. They act; then the player acts.
+
+---
 ## Surfacing rules (for DM narration)
 
 The DM should surface companion state through:

@@ -24,6 +24,30 @@ voice: [One sentence describing how this character sounds when they speak.
         Rhythm, vocabulary, what they avoid saying.]
 
 ---
+## Tactical Tendencies
+
+# How this companion approaches combat and exploration.
+# This is the DM's guide for running their turns and initiative actions.
+# Be specific — "aggressive" is not useful; "closes to melee immediately,
+# prioritizes the most dangerous enemy, will take an opportunity attack to
+# stay in a fight" is useful.
+
+combat_style: >
+  [e.g. "Stays back and heals until an ally drops below half HP, then moves
+  to close range and switches to melee. Uses Turn Undead early if undead
+  are present — she views it as her primary duty, not a last resort."]
+
+exploration_approach: >
+  [e.g. "Moves ahead of the party at intersections to check for traps.
+  Asks about markings and symbols before the player notices them. Will not
+  enter a space she cannot see at least two exits from."]
+
+default_priorities:
+  - "[First priority in a fight — e.g. 'Keep the player upright']"
+  - "[Second priority — e.g. 'Neutralize ranged attackers']"
+  - "[Third priority — e.g. 'Preserve her own spell slots for emergencies']"
+
+---
 ## Core Belief
 
 # One sentence. The thing they are most certain is true.

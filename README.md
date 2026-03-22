@@ -104,6 +104,8 @@ Z. Something else — tell me what you do.
 
 Z is always the open-ended option. Type a letter to choose, or type freely for anything not listed.
 
+**Narration** — the DM always refers to your character as "you" in story mode. Technical information (room IDs, stat values, file names, roll numbers) never appears in narration — rooms are described by what they are, not their tracking ID. That information is only surfaced OOC when you ask for it.
+
 **Player dialogue** — any spoken dialogue you include will be echoed back with a "you say" attribution before the scene continues.
 
 **Out-of-character (OOC) communication** — wrap anything in parentheses `( )` to speak to the DM outside the fiction. The DM replies in parentheses and resumes play after.
@@ -164,12 +166,24 @@ All dice are rolled by the DM inline. Player rolls are fully visible. DM rolls f
 
 ### Companion System
 
-Persistent party members have a `soul.md` with personality, core belief, current goal, and relationship state tracked on two dimensions:
+Companions are fully built player characters controlled by the DM — not followers or assistants. They have complete character sheets (proper stats, class abilities, equipment) and act as co-protagonists with their own goals, opinions, and story arcs.
+
+**Creation** — two paths:
+- **Full character creation:** the player makes all the choices for the companion (class, stats, abilities, gear) using the same process as their own character. soul.md is then built to match.
+- **Imported sheet:** the player provides a pre-built character sheet; the DM generates soul.md to match.
+
+No companion enters play with placeholder stats.
+
+**In combat** — the DM runs companion turns automatically each round using their actual class abilities and tactical tendencies defined in `soul.md`. A cleric heals when it matters and turns undead when it's called for. A thief flanks. A fighter holds the line.
+
+**Outside combat** — companions are not passengers. They notice things relevant to their class, pursue their own goals, form opinions on player decisions before the player acts, and initiate story beats.
+
+**Character development** — tracked on two dimensions in `soul.md`:
 
 - **Base level:** distant → neutral → warm → devoted
 - **Tension overlay:** none / strained / conflicted (independent of base level)
 
-Companions develop through play whether or not you engage with story beats. Ignored threads accumulate. Under extreme conditions (core belief betrayed, 4+ sessions of ignored threads), companions can withdraw, confront you, or act independently.
+Companions develop whether or not you engage with story beats. Ignored threads accumulate. Under extreme conditions (core belief betrayed, 4+ sessions of ignored threads), companions can withdraw, confront you, or act independently.
 
 ### Cinematic Moments
 
