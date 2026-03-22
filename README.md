@@ -208,10 +208,24 @@ When a situation isn't covered by `mechanics.md`, the DM looks for an analogy in
 
 ## Repository Contents
 
+**DM sub-skills** — load the relevant file when the situation requires it:
+
+| File | When to load | What it covers |
+|---|---|---|
+| `SKILL.md` | Every session | Parent router — file structure, template index, sub-skill index |
+| `dm_session.md` | Every session | Session start, active play, session end |
+| `dm_resolution.md` | Any skill check or combat | Skill checks, dice rolling, combat confirmation |
+| `dm_files.md` | Always (background) | File maintenance, mid-session logging, context management |
+| `dm_setup.md` | First time setup or rules questions | Campaign setup, character creation, undefined rules |
+| `dm_dungeon.md` | Room generation or location transitions | Dungeon generation, multi-location campaigns |
+| `dm_companions.md` | Any session with companions | Companion types, agency, character development |
+| `dm_skill.md` | Session end or companion story beats | soul.md updates, surfacing rules, departure rules |
+| `dm_narration.md` | Always (background) | Tone, voice, pacing, OOC communication, player prompts |
+
+**Format templates** — used when generating campaign files:
+
 | File | Purpose |
 |---|---|
-| `SKILL.md` | Parent DM skill — the main entry point |
-| `dm_skill.md` | Rules for updating companion soul.md files |
 | `generated_skill_format.md` | Template for generated sub-skills |
 | `mechanics_md_format.md` | Template for parsed rulebook mechanics |
 | `character_sheet_md_format.md` | Template for character sheets |

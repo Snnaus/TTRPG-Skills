@@ -106,8 +106,41 @@ since the player is observing their ally's actions.
 
 ### Outside combat
 
-Companions act on their own initiative in exploration and social scenes.
-They do not wait for the player to ask them to do something. Specifically:
+Companions are the primary engine of story pressure outside of combat.
+The player drives action; companions drive meaning. If the player is moving
+through the world without friction, without questions being asked, without
+someone pushing back on what they are doing or why — the companions are
+not doing their job.
+
+**They question the circumstances.**
+This is the most important behavior and the one most easily omitted.
+Companions do not simply accept the situation. They ask why. They notice
+what does not add up. They voice doubt before the player has decided what
+to think. This is not obstruction — it is characterization and narrative
+pressure.
+
+Examples of the kinds of questions companions raise:
+- "Who put this here, and why would they leave it unlocked?"
+- "That guard recognized you. Did you see his face when you said the name?"
+- "We were told there were four of them. I've only counted three."
+- "Something's wrong. This doesn't feel like a dungeon that's been abandoned."
+- "You trust him. I want to know why."
+- "We're going deeper. I need to know what we're actually looking for."
+
+These questions are spoken aloud, in the companion's voice, at the moment
+the discrepancy appears — not held until the player notices it. The companion
+sees it first and says something.
+
+**They push back on the player's direction.**
+When the player moves toward something the companion finds wrong, reckless,
+or contrary to their belief, they say so — once, clearly, in their own voice.
+They do not repeat themselves unless the player engages. Saying it once is
+enough to put it on the table. The player decides; the companion has been heard.
+
+Examples:
+- "I'll follow you in there. But I want it noted that I think this is a mistake."
+- "We don't know what's on the other side of that door. Shouldn't we?"
+- "You're moving fast. Are we running toward something or away from it?"
 
 **They notice things relevant to their class or background.**
 A thief checks for traps before the player steps forward. A cleric senses
@@ -116,30 +149,43 @@ these as actions the companion takes, not as information handed to the player.
 
 **They pursue their current goal.**
 If a companion's goal is findable in the current location, they move toward
-it. They mention it. They ask the player for help with it. They do not
-shelve their goal because the player is focused on something else.
+it — they mention it, ask the player for help, or act on it directly if the
+player is occupied. They do not shelve their goal because the player is
+focused on something else.
 
-**They have opinions on decisions.**
-When the player faces a meaningful choice, companions react from their
-belief and personality — before the player decides if possible, not after.
-This is not blocking the player; it is giving them real information about
-who they are traveling with.
+**They fill quiet moments.**
+When the party pauses, rests, or passes through a corridor, companions speak.
+Not monologues — one line, a question, a reaction to something that happened
+earlier. Silence between encounters is when companions reveal who they are.
+The DM should be looking for these openings and using them.
 
-**They initiate story beats.**
-Companions ask questions, follow up on things the player passed by, and
-bring up unresolved threads when the moment is quiet. They are allowed to
-make the first move in a scene.
+Examples of quiet-moment lines:
+- (After a fight) "That went badly. We need a better plan for the next one."
+- (Entering a new area) "I've heard stories about this place. None of them ended well."
+- (After the player ignores something) "You saw that back there. You're not going to say anything?"
+- (Unprompted) "How much further do you think it goes?"
+
+### Frequency
+
+Companions should be generating narrative pressure in most non-combat DM
+responses where there is something worth questioning — not every response,
+but the default should lean toward speaking, not silence. If two or three
+consecutive DM responses have passed without a companion contributing something
+meaningful, that is a signal to find an opening.
+
+The companion who says nothing while strange things happen is not "staying
+in the background" — they are failing to do their job as a co-protagonist.
 
 ### Pacing constraints still apply
 
-All companion agency is delivered within the pacing rules in SKILL.md:
+All companion agency is delivered within the pacing rules in dm_narration.md:
 - One companion action or line per DM response, not a sequence
 - 1–2 lines of dialogue maximum per beat
 - If a companion has more to contribute, spread it across multiple beats
   as the scene develops — do not front-load
 
 The goal is that companions feel present and alive, not that they dominate
-the scene. They act; then the player acts.
+the scene. They speak; then the player acts.
 
 ---
 ## Surfacing rules (for DM narration)
