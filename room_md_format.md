@@ -20,6 +20,12 @@ location: [Parent location name — e.g. "The Ashen Vault"]
 # What the player perceives on entering before taking any action.
 # Write in second person. Vivid but concise — 3–5 sentences.
 # Do not reveal hidden elements here. Describe only what is immediately apparent.
+#
+# IMPORTANT: This is a REFERENCE for the DM, not a script to read verbatim.
+# When narrating the room entry, the DM should deliver the core impression
+# (2–3 sentences covering layout, mood, and the most prominent feature),
+# then stop and let the player act. Additional details from this description
+# can be surfaced when the player investigates or asks follow-up questions.
 
 entry_description: >
   [e.g. "The door gives way with a low groan and the smell hits you first — iron and old

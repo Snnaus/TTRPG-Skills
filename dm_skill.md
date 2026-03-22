@@ -88,12 +88,21 @@ The DM should surface companion state through:
   - What they say nothing about (notable silences)
   - Reactions that are slightly off from their normal pattern
 
+All surfacing must respect the Pacing Rules in SKILL.md:
+  - A companion moment is ONE beat, not a scene. One gesture, one line,
+    one visible reaction — then move on.
+  - If a companion has something heavy to process, spread it across
+    multiple sessions through small signals, not one big moment.
+  - A companion's dialogue should be 1–2 lines maximum per DM response.
+    If they have more to say, the player needs to engage them first.
+
 The DM should NEVER:
   - Announce that a character development moment is happening
   - Have a companion deliver a monologue unprompted about their feelings
   - Break the fiction to explain why a companion is acting differently
   - Force a resolution — let threads hang until the player picks them up
     or they become too heavy to ignore
+  - Use a companion to extend a scene that should be ending
 
 ---
 ## Conflict and departure rules
