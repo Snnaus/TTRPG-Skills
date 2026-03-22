@@ -61,8 +61,8 @@ When the player completes a dungeon or moves to a new location:
 
 1. Finalize the current dungeon's session-log.md with a closing summary.
 2. Migrate unresolved narrative hooks from the dungeon's session-log to
-   campaign/world-log.md → open_hooks.
-3. Migrate significant NPCs that may appear elsewhere to world-log.md → persistent_npcs.
+   {Game Name} Rules/campaign/world-log.md → open_hooks.
+3. Migrate significant NPCs that may appear elsewhere to {Game Name} Rules/campaign/world-log.md → persistent_npcs.
 4. Generate the new location's layout.md and session-log.md as in the Setup Phase
    (see dm_setup.md).
 5. At the start of the next session in the new location, load world-log.md

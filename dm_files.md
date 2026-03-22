@@ -13,22 +13,22 @@ The player does not need to track state or manually apply deltas.
 
 | Event | Files to update |
 |---|---|
-| HP changes (damage or healing) | `player/character-sheet.md` — update current HP |
-| Item gained or consumed | `player/inventory.md` — add or remove the entry |
-| Currency change | `player/inventory.md` — update currency total |
-| XP awarded | `player/character-sheet.md` — update XP total |
-| Condition applied or cleared | `player/character-sheet.md` — update active conditions |
-| Resource spent (spell slot, ability use, etc.) | `player/character-sheet.md` — update the relevant resource |
-| Player moves toward an unvisited room | Generate `rooms/[name].md` using room_md_format.md before narrating the approach; set `file_exists: true` and `status: approached` in `layout.md` |
-| Player enters a room | Set `status: entered` in `layout.md` for that room |
+| HP changes (damage or healing) | `{Game Name} Rules/player/character-sheet.md` — update current HP |
+| Item gained or consumed | `{Game Name} Rules/player/inventory.md` — add or remove the entry |
+| Currency change | `{Game Name} Rules/player/inventory.md` — update currency total |
+| XP awarded | `{Game Name} Rules/player/character-sheet.md` — update XP total |
+| Condition applied or cleared | `{Game Name} Rules/player/character-sheet.md` — update active conditions |
+| Resource spent (spell slot, ability use, etc.) | `{Game Name} Rules/player/character-sheet.md` — update the relevant resource |
+| Player moves toward an unvisited room | Generate `{Game Name} Rules/dungeons/[dungeon]/rooms/[name].md` using room_md_format.md before narrating the approach; set `file_exists: true` and `status: approached` in `layout.md` |
+| Player enters a room | Set `status: entered` in `{Game Name} Rules/dungeons/[dungeon]/layout.md` for that room |
 | Room is cleared | Set `status: cleared` in `layout.md` |
 | Room is altered by player action | Add entry to room file `alterations` log; set `status: altered` in `layout.md` |
 | New connection or passage discovered | Add the connection to `layout.md` room manifest and update the abstract map; generate the connecting room file if the player is now approaching it |
 | Dungeon has more depth than initially mapped | Extend `layout.md` room manifest with new room entries (type, connections, threat — no detail yet); update the abstract map |
-| Companion HP, condition, or resource changes | `companions/[name]/character-sheet.md` |
-| Companion item gained or lost | `companions/[name]/inventory.md` |
-| Companion soul state shifts | Tracked mentally during session; written to `companions/[name]/soul.md` at session end (see dm_skill.md) |
-| Significant NPC or world-state change | `session-log.md` running tracker — open_hooks, significant_npcs, world_state_changes |
+| Companion HP, condition, or resource changes | `{Game Name} Rules/companions/[name]/character-sheet.md` |
+| Companion item gained or lost | `{Game Name} Rules/companions/[name]/inventory.md` |
+| Companion soul state shifts | Tracked mentally during session; written to `{Game Name} Rules/companions/[name]/soul.md` at session end (see dm_skill.md) |
+| Significant NPC or world-state change | `{Game Name} Rules/dungeons/[dungeon]/session-log.md` running tracker — open_hooks, significant_npcs, world_state_changes |
 
 **File updates are silent.** The DM does not narrate or announce that a file
 has been updated. Play continues without interruption. The player can ask OOC

@@ -22,45 +22,54 @@ Systems tested: Basic Fantasy RPG. Designed to work with D&D, Pathfinder, Blades
 
 ## File Structure
 
+The DM skill files (this repo) are system-agnostic and sit at the root. Each
+game system and its campaign data live in a dedicated `{Game Name} Rules/`
+folder. Multiple games can run concurrently — they never share files.
+
 ```
-/dungeon-master/
+/
 ├── SKILL.md                        ← Parent routing skill (start here)
-├── dm_skill.md                     ← Companion soul update rules
-├── campaign/
-│   └── world-log.md                ← Cross-dungeon persistent state
-├── rulebook/
-│   ├── mechanics.md                ← Parsed rules (generated at setup)
-│   └── sub-skills/
-│       └── [mechanic-name].md      ← Generated sub-skills, one per domain
-├── dungeons/
-│   └── [dungeon-name]/
-│       ├── layout.md               ← Broad structure and room manifest
-│       ├── rooms/
-│       │   └── [room-name].md      ← Generated as the player approaches
-│       └── session-log.md          ← Persistent session record
-├── player/
-│   ├── character-sheet.md
-│   └── inventory.md
-└── companions/
-    └── [companion-name]/
-        ├── soul.md                 ← Personality, goals, beliefs, current state
-        ├── character-sheet.md
-        └── inventory.md
+├── dm_*.md                         ← System-agnostic DM sub-skills
+│
+├── Basic Fantasy RPG Rules/        ← Example: one game's full campaign data
+│   ├── rulebook/
+│   │   ├── mechanics.md            ← Parsed rules (generated at setup)
+│   │   └── sub-skills/
+│   │       └── [mechanic-name].md  ← Generated sub-skills, one per domain
+│   ├── campaign/
+│   │   └── world-log.md            ← Cross-dungeon persistent state
+│   ├── dungeons/
+│   │   └── [dungeon-name]/
+│   │       ├── layout.md           ← Broad structure and room manifest
+│   │       ├── rooms/
+│   │       │   └── [room-name].md  ← Generated as the player approaches
+│   │       └── session-log.md      ← Persistent session record
+│   ├── player/
+│   │   ├── character-sheet.md
+│   │   └── inventory.md
+│   └── companions/
+│       └── [companion-name]/
+│           ├── soul.md             ← Personality, goals, beliefs, current state
+│           ├── character-sheet.md
+│           └── inventory.md
+│
+└── Pathfinder 2e Rules/            ← Second concurrent game, fully independent
+    └── ...
 ```
 
 **Format templates** (in the repo root — used when generating any file):
 
 | File to generate | Template |
 |---|---|
-| campaign/world-log.md | world_log_md_format.md |
-| rulebook/mechanics.md | mechanics_md_format.md |
-| rulebook/sub-skills/[name].md | generated_skill_format.md |
-| dungeons/[name]/layout.md | layout_md_format.md |
-| dungeons/[name]/rooms/[name].md | room_md_format.md |
-| dungeons/[name]/session-log.md | session_log_md_format.md |
-| player/character-sheet.md | character_sheet_md_format.md |
-| player/inventory.md | inventory_md_format.md |
-| companions/[name]/soul.md | soul_md_format.md |
+| {Game Name} Rules/campaign/world-log.md | world_log_md_format.md |
+| {Game Name} Rules/rulebook/mechanics.md | mechanics_md_format.md |
+| {Game Name} Rules/rulebook/sub-skills/[name].md | generated_skill_format.md |
+| {Game Name} Rules/dungeons/[name]/layout.md | layout_md_format.md |
+| {Game Name} Rules/dungeons/[name]/rooms/[name].md | room_md_format.md |
+| {Game Name} Rules/dungeons/[name]/session-log.md | session_log_md_format.md |
+| {Game Name} Rules/player/character-sheet.md | character_sheet_md_format.md |
+| {Game Name} Rules/player/inventory.md | inventory_md_format.md |
+| {Game Name} Rules/companions/[name]/soul.md | soul_md_format.md |
 
 ---
 
@@ -70,8 +79,8 @@ Systems tested: Basic Fantasy RPG. Designed to work with D&D, Pathfinder, Blades
 
 1. Open a new Claude conversation and attach or paste the contents of `SKILL.md` and `dm_skill.md`.
 2. Tell Claude you want to start a new campaign and provide your rulebook — either paste the key mechanics or describe them from memory. (PDF parsing is a future feature; for now, text or description works.)
-3. Claude will:
-   - Parse the rulebook into `rulebook/mechanics.md`
+3. Claude will confirm the game name, create a `{Game Name} Rules/` folder, then:
+   - Parse the rulebook into `{Game Name} Rules/rulebook/mechanics.md`
    - Generate system-specific sub-skills (at minimum: `combat_resolution` and `skill_checks`)
    - Walk you through character creation → `player/character-sheet.md` and `player/inventory.md`
    - Ask if you want AI companion party members (each gets a `soul.md`, character sheet, and inventory)

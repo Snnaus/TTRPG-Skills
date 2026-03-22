@@ -25,48 +25,88 @@ surfaced contextually when they add clarity.
 ## Skill Architecture
 
 This skill acts as a router. It does not handle game mechanics directly — it
-delegates to sub-skills. The folder structure is:
+delegates to sub-skills. Multiple games and campaigns can run concurrently —
+each gets its own `{Game Name} Rules/` folder at the root level.
 
 ```
-/dungeon-master/
-├── SKILL.md                        ← you are here
-├── campaign/
-│   └── world-log.md                ← cross-dungeon persistent state
-├── rulebook/
-│   ├── mechanics.md                ← parsed rules (generated at setup)
-│   └── sub-skills/
-│       └── [mechanic-name].md      ← generated sub-skills, one per mechanical domain
-├── dungeons/
-│   └── [dungeon-name]/
-│       ├── layout.md               ← broad structure, room list
-│       ├── rooms/
-│       │   └── [room-name].md      ← generated as player approaches
-│       └── session-log.md          ← persistent record for this location
-├── player/
-│   ├── character-sheet.md
-│   └── inventory.md
-└── companions/
-    └── [companion-name]/
-        ├── soul.md                 ← personality, goals, beliefs, current state
-        ├── character-sheet.md
-        └── inventory.md
+/
+├── SKILL.md                        ← you are here (system-agnostic)
+├── dm_*.md                         ← system-agnostic DM sub-skills
+│
+├── {Game Name} Rules/              ← one folder per game system/campaign
+│   ├── rulebook/
+│   │   ├── mechanics.md            ← parsed rules (generated at setup)
+│   │   └── sub-skills/
+│   │       └── [mechanic-name].md  ← generated sub-skills, one per mechanical domain
+│   ├── campaign/
+│   │   └── world-log.md            ← cross-dungeon persistent state
+│   ├── dungeons/
+│   │   └── [dungeon-name]/
+│   │       ├── layout.md           ← broad structure, room list
+│   │       ├── rooms/
+│   │       │   └── [room-name].md  ← generated as player approaches
+│   │       └── session-log.md      ← persistent record for this location
+│   ├── player/
+│   │   ├── character-sheet.md
+│   │   └── inventory.md
+│   └── companions/
+│       └── [companion-name]/
+│           ├── soul.md             ← personality, goals, beliefs, current state
+│           ├── character-sheet.md
+│           └── inventory.md
+│
+└── {Another Game} Rules/           ← second concurrent game, fully independent
+    └── ...
 ```
+
+All paths below are relative to the active `{Game Name} Rules/` folder.
 
 **Format templates** (reference these when generating any file):
 
 | File to generate | Template to follow |
 |---|---|
-| campaign/world-log.md | world_log_md_format.md |
-| rulebook/mechanics.md | mechanics_md_format.md |
-| rulebook/sub-skills/[name].md | generated_skill_format.md |
-| dungeons/[name]/layout.md | layout_md_format.md |
-| dungeons/[name]/rooms/[name].md | room_md_format.md |
-| dungeons/[name]/session-log.md | session_log_md_format.md |
-| player/character-sheet.md | character_sheet_md_format.md |
-| player/inventory.md | inventory_md_format.md |
-| companions/[name]/soul.md | soul_md_format.md |
-| companions/[name]/character-sheet.md | character_sheet_md_format.md |
-| companions/[name]/inventory.md | inventory_md_format.md |
+| {Game Name} Rules/campaign/world-log.md | world_log_md_format.md |
+| {Game Name} Rules/rulebook/mechanics.md | mechanics_md_format.md |
+| {Game Name} Rules/rulebook/sub-skills/[name].md | generated_skill_format.md |
+| {Game Name} Rules/dungeons/[name]/layout.md | layout_md_format.md |
+| {Game Name} Rules/dungeons/[name]/rooms/[name].md | room_md_format.md |
+| {Game Name} Rules/dungeons/[name]/session-log.md | session_log_md_format.md |
+| {Game Name} Rules/player/character-sheet.md | character_sheet_md_format.md |
+| {Game Name} Rules/player/inventory.md | inventory_md_format.md |
+| {Game Name} Rules/companions/[name]/soul.md | soul_md_format.md |
+| {Game Name} Rules/companions/[name]/character-sheet.md | character_sheet_md_format.md |
+| {Game Name} Rules/companions/[name]/inventory.md | inventory_md_format.md |
+
+---
+
+## Entry Point — Do This First
+
+Before doing anything else, run this check:
+
+```
+Does a {Game Name} Rules/ folder exist with rulebook/mechanics.md inside it?
+
+  NO  → Run dm_setup.md in full before proceeding.
+        The first thing setup does is establish the game name and
+        create the {Game Name} Rules/ folder. Do not start a session,
+        generate a dungeon, or create characters until setup is complete.
+
+  YES → Which game is the player asking about?
+        All paths for this session are relative to that game's
+        {Game Name} Rules/ folder.
+
+        Check: does {Game Name} Rules/dungeons/[name]/session-log.md exist?
+
+          NO  → The player has a rulebook but no campaign yet.
+                Run dm_setup.md steps 6–9 (scenario, dungeon,
+                session-log, world-log) before starting play.
+
+          YES → Proceed to dm_session.md → Session Start.
+```
+
+Do not skip or abbreviate setup. A campaign without mechanics.md cannot
+be run correctly — there are no rules to reference for checks, combat,
+or advancement.
 
 ---
 
@@ -80,7 +120,7 @@ the situation requires it.
 | `dm_session.md` | Every session | Session start, active play, session end |
 | `dm_resolution.md` | Any skill check or combat | Skill checks, dice rolling, combat confirmation |
 | `dm_files.md` | Always (background) | File maintenance, mid-session logging, context management |
-| `dm_setup.md` | First time setup or rules questions | Campaign setup, character creation, undefined rules |
+| `dm_setup.md` | No mechanics.md exists, or rules questions | Campaign setup, character creation, undefined rules |
 | `dm_dungeon.md` | Room generation or location transitions | Dungeon generation, multi-location campaigns |
 | `dm_companions.md` | Any session with companions | Companion types, agency, character development |
 | `dm_skill.md` | Session end or companion story beats | soul.md updates, surfacing rules, departure rules |

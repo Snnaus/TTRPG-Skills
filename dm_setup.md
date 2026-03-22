@@ -5,40 +5,52 @@
 
 ## Setup Phase (First Time)
 
-If no mechanics.md exists yet, run the setup phase:
+If no `{Game Name} Rules/` folder exists yet, run the setup phase in full.
+All files created during setup live inside this folder. The folder name is
+the canonical identifier for this game — use it consistently across all
+sub-skills and file references.
 
-1. Ask the player to paste or describe their rulebook (or key mechanics).
+1. Ask the player: what game system are they using? This name becomes the
+   folder. Examples: `Basic Fantasy RPG Rules/`, `Pathfinder 2e Rules/`,
+   `Blades in the Dark Rules/`. Confirm the name with the player before
+   creating anything.
 
-2. Parse the rulebook and generate **rulebook/mechanics.md** using mechanics_md_format.md.
-   Populate every section of the template from the provided rules:
+   Create the top-level folder: **{Game Name} Rules/**
+
+2. Ask the player to paste or describe their rulebook (or key mechanics).
+
+3. Parse the rulebook and generate **{Game Name} Rules/rulebook/mechanics.md**
+   using mechanics_md_format.md. Populate every section from the provided rules:
    - Core stat system (what stats exist, what they govern, how they are expressed)
    - Resolution mechanic (the core roll formula and difficulty scale)
    - Combat structure (initiative, action economy, damage, conditions, defeat)
    - Advancement system (XP, milestones, or equivalent)
    - Any unique mechanics specific to this system (spell slots, sanity, stress, etc.)
-   Do not invent values. If the player did not provide a rule, note it as "not provided —
-   ask player" rather than filling in a guess.
+   Do not invent values. If the player did not provide a rule, note it as
+   "not provided — ask player" rather than filling in a guess.
 
-3. Generate sub-skills from mechanics.md using generated_skill_format.md.
-   Create one sub-skill file per mechanical domain the system requires.
+4. Generate sub-skills from mechanics.md using generated_skill_format.md.
+   Create one sub-skill file per mechanical domain the system requires at
+   **{Game Name} Rules/rulebook/sub-skills/[name].md**.
    Minimum expected sub-skills:
    - **combat_resolution** — owns all combat turns, initiative, damage, conditions, defeat
    - **skill_checks** — owns all non-combat action resolution
-   Add additional sub-skills for any unique mechanics that warrant their own resolution
-   logic (e.g. spell_resolution, sanity_checks, stress_management).
+   Add additional sub-skills for any unique mechanics that warrant their own
+   resolution logic (e.g. spell_resolution, sanity_checks, stress_management).
    List all generated sub-skills in the mechanics.md sub_skills section.
 
-4. Walk the player through character creation using the rules in mechanics.md.
-   Generate **player/character-sheet.md** using character_sheet_md_format.md.
+5. Walk the player through character creation using the rules in mechanics.md.
+   Generate **{Game Name} Rules/player/character-sheet.md** using character_sheet_md_format.md.
    Populate the stats section from the stat list in mechanics.md — do not hardcode
-   a default stat system. Generate **player/inventory.md** using inventory_md_format.md.
+   a default stat system. Generate **{Game Name} Rules/player/inventory.md**
+   using inventory_md_format.md.
 
-5. Ask about companions: does the player want AI party members?
+6. Ask about companions: does the player want AI party members?
 
    If yes, for each companion choose one of two creation paths:
 
    **Path A — Full character creation (recommended for new campaigns)**
-   Run the same character creation process as step 4, but the player makes
+   Run the same character creation process as step 5, but the player makes
    the choices for the companion: class, stats, abilities, starting equipment.
    The companion is built to the same mechanical standard as the player
    character — proper stats, class abilities, starting gear, and resources.
@@ -52,21 +64,21 @@ If no mechanics.md exists yet, run the setup phase:
    and class. Confirm with the player that stats and abilities are correct
    before play begins.
 
-   For either path, generate:
-   - companions/[name]/**character-sheet.md** using character_sheet_md_format.md
+   For either path, generate inside **{Game Name} Rules/companions/[name]/**:
+   - **character-sheet.md** using character_sheet_md_format.md
      (fully populated — no placeholder stats)
-   - companions/[name]/**inventory.md** using inventory_md_format.md
+   - **inventory.md** using inventory_md_format.md
      (fully populated — starting gear that matches class and backstory)
-   - companions/[name]/**soul.md** using soul_md_format.md
+   - **soul.md** using soul_md_format.md
      (personality and belief grounded in their class, history, and creation choices)
 
    Do not generate a companion with placeholder or approximate stats.
    A companion without a complete character sheet cannot be run as a proper
    party member in combat or skill checks.
 
-6. Ask for a scenario or offer to generate one based on the rulebook's setting.
+7. Ask for a scenario or offer to generate one based on the rulebook's setting.
 
-7. Generate **dungeons/[dungeon-name]/layout.md** using layout_md_format.md:
+8. Generate **{Game Name} Rules/dungeons/[dungeon-name]/layout.md** using layout_md_format.md:
    - Location type, biome, and atmosphere
    - Threat level and dominant faction
    - Complete room manifest (with IDs, types, and connections)
@@ -74,13 +86,13 @@ If no mechanics.md exists yet, run the setup phase:
    - Abstract location map
    Do not generate individual room files yet — those are created as the player approaches.
 
-8. Initialize **dungeons/[dungeon-name]/session-log.md** using session_log_md_format.md.
-   Populate the Campaign Identity and Running Tracker sections. Leave session entries empty
-   until the first session ends.
+9. Initialize **{Game Name} Rules/dungeons/[dungeon-name]/session-log.md** using
+   session_log_md_format.md. Populate the Campaign Identity and Running Tracker
+   sections. Leave session entries empty until the first session ends.
 
-9. Initialize **campaign/world-log.md** using world_log_md_format.md.
-   Record the campaign name, system, player character, and starting location.
-   This file persists across dungeons and tracks world-level state.
+10. Initialize **{Game Name} Rules/campaign/world-log.md** using world_log_md_format.md.
+    Record the campaign name, system, player character, and starting location.
+    This file persists across dungeons and tracks world-level state.
 
 ---
 

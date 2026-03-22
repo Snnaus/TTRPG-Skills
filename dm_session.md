@@ -62,9 +62,9 @@ continuously (see dm_files.md). Session end is a reconciliation and narrative
 summary step, not a data-entry step.
 
 **Reconciliation — verify nothing was missed:**
-- Cross-check `player/character-sheet.md` HP, XP, conditions, and resources
+- Cross-check `{Game Name} Rules/player/character-sheet.md` HP, XP, conditions, and resources
   against the mid_session_notes deltas. Correct any discrepancy silently.
-- Cross-check `player/inventory.md` against all items_gained and items_lost
+- Cross-check `{Game Name} Rules/player/inventory.md` against all items_gained and items_lost
   entries in mid_session_notes. Correct any discrepancy silently.
 - Confirm all companion character sheets and inventories are current.
 - Confirm `layout.md` statuses are correct for all rooms visited this session
@@ -95,4 +95,4 @@ Update the Running Tracker section of session-log.md:
 **World log:**
 If any events this session have consequences beyond the current dungeon
 (faction alerts, world-state shifts, cross-location NPCs), add an entry
-to `campaign/world-log.md`.
+to `{Game Name} Rules/campaign/world-log.md`.
