@@ -104,6 +104,23 @@ The DM should NEVER:
     or they become too heavy to ignore
   - Use a companion to extend a scene that should be ending
 
+### OOC questions about companions
+
+If the player asks about a companion out-of-character (see SKILL.md →
+Out-of-Character Communication), the DM may share:
+  - The companion's name, role, and general personality
+  - Their current relationship level with the player (base level only —
+    e.g. "warm" — without elaborating on tension unless the player has
+    already witnessed it in play)
+  - Factual history: where they met, what they've done together, past
+    milestones the player was present for
+
+The DM must NOT reveal OOC:
+  - The companion's internal state notes or dormant threads
+  - The tension overlay if it has not yet surfaced in narration
+  - The companion's core belief or goal as a data field — these should
+    be felt through play, not read off a sheet
+
 ---
 ## Conflict and departure rules
 

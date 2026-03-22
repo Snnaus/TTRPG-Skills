@@ -2,19 +2,21 @@
 
 An AI-powered Dungeon Master that ingests any tabletop RPG rulebook and runs a full campaign for solo or co-op players. The primary interface is conversational, with visual elements (maps, character sheets, spatial diagrams) surfacing contextually when they add clarity.
 
+This project contains the system-agnostic skill files only. Campaign files generated from specific rule books (character sheets, dungeon layouts, session logs, etc.) are intentionally excluded from this repo.
+
 ---
 
 ## What It Does
 
 This is a **skill factory** — a parent skill that reads your rulebook, parses the mechanics, and dynamically generates the sub-skills needed to run that specific game system. Since all tabletop RPGs share a common skeleton (stats, resolution, combat, advancement), the parser slots in system-specific details rather than building from scratch.
 
-Supported out of the box with any system that has:
+Supported with any system that has:
 - A stat system
 - A core resolution mechanic (roll vs. difficulty, opposed checks, etc.)
 - A combat structure
 - Some form of advancement
 
-Systems tested: Basic Fantasy RPG. Should work with D&D, Pathfinder, Blades in the Dark, Mothership, and similar systems.
+Systems tested: Basic Fantasy RPG. Designed to work with D&D, Pathfinder, Blades in the Dark, Mothership, and similar systems.
 
 ---
 
@@ -66,7 +68,7 @@ Systems tested: Basic Fantasy RPG. Should work with D&D, Pathfinder, Blades in t
 
 ### First Time Setup
 
-1. Open a new Claude conversation and attach or paste the contents of `SKILL.md`.
+1. Open a new Claude conversation and attach or paste the contents of `SKILL.md` and `dm_skill.md`.
 2. Tell Claude you want to start a new campaign and provide your rulebook — either paste the key mechanics or describe them from memory. (PDF parsing is a future feature; for now, text or description works.)
 3. Claude will:
    - Parse the rulebook into `rulebook/mechanics.md`
@@ -89,18 +91,42 @@ Claude will validate your character state against the last session log (flagging
 
 ### During Play
 
-The DM operates in a **beat-and-prompt** pattern: one narrative beat per response, then the player acts. Rooms are generated on demand as you approach them — the layout skeleton exists upfront, but individual room files are created the moment you head toward them.
+The DM operates in a **beat-and-prompt** pattern: one narrative beat per response, then the player acts. Rooms are generated on demand as you approach them.
+
+**Player prompts** — at decision points, the DM will offer lettered shorthand options:
+
+```
+A. Draw your sword and step into the room.
+B. Call out to see if anyone is inside.
+C. Back away and find another route.
+Z. Something else — tell me what you do.
+```
+
+Z is always the open-ended option. Type a letter to choose, or type freely to do something not listed.
+
+**Player dialogue** — any spoken dialogue you include will be echoed back by the DM with a "you say" attribution before the scene continues.
+
+**Out-of-character (OOC) communication** — wrap anything in parentheses `( )` to speak directly to the DM outside the fiction. The DM will reply in parentheses as well, then resume play where you left off.
+
+```
+(Wait, did I already use my spell today?)
+(Yes — you cast Light in R02 at the start of the session. You're out until you rest.)
+```
+
+The DM can remind you of past events, clarify rules, and confirm your current character state OOC. It will not reveal undiscovered room content, enemy stats, DM secrets, or future plot details.
+
+**Mid-session logging** — the DM automatically writes compact milestone entries to `session-log.md` during play (after combat, room clears, significant NPC interactions, companion moments, and major decisions). You do not need to manage this. You can ask OOC at any time to see what has been logged so far.
 
 ### Ending a Session
 
-Tell Claude the session is over. It will produce:
-- A session summary entry for `session-log.md`
+Tell Claude the session is over whenever you want to stop. It will produce:
+- A full session summary entry for `session-log.md` (built from the mid-session notes)
 - An `updated_character_sheet` with all deltas already applied (copy-paste ready)
 - An `updated_inventory` with gains and losses applied
 - Companion soul update blocks (one per companion)
 - A list of any room files generated this session
 
-You then copy the updated files back into the repo before the next session.
+You then copy the updated files back into your campaign folder before the next session.
 
 ---
 
@@ -155,4 +181,3 @@ When a situation isn't covered by `mechanics.md`, the DM first looks for an anal
 | `soul_md_format.md` | Template for companion soul files |
 | `world_log_md_format.md` | Template for the cross-dungeon world log |
 | `Design_Summary.md` | Architecture decisions and open questions |
-| `Basic Fantasy RPG/` | Example campaign using Basic Fantasy RPG |

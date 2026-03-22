@@ -2,7 +2,8 @@
 # SKILL: dungeons/[location-name]/session-log.md
 # FORMAT VERSION: 1.0
 # Persistent record of all sessions in this campaign.
-# Written by the DM at the end of each session as part of the session summary.
+# Written by the DM: mid_session_notes are appended automatically during play at
+# key milestones; the full session summary is written at session end.
 # Player may annotate but should not alter DM-written entries.
 # This file is loaded at session start to reconstruct context.
 # Load only the most recent 2–3 entries in context unless the player references older history.
@@ -65,6 +66,17 @@ world_state_changes:
 sessions:
   - session: 1
     date: [YYYY-MM-DD]
+
+    mid_session_notes:
+      # Written by the DM automatically during play at key story milestones.
+      # Each entry is appended as events occur — do not edit previous entries.
+      # The player does not need to manage this; the DM maintains it silently.
+      # At session end, the DM uses these notes to write the full summary below.
+      - label: "[e.g. Combat — Guard Room R03]"
+        outcome: "[One sentence — what happened and how it resolved]"
+        deltas: "[HP change, items gained/lost, XP if awarded — or 'none']"
+        hooks: "[Any new open threads this created — or 'none']"
+      # Continue appending entries below as milestones occur.
 
     summary: >
       [3–6 sentences. What happened this session at a narrative level.
