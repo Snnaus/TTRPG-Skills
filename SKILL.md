@@ -84,24 +84,45 @@ All paths below are relative to the active `{Game Name} Rules/` folder.
 Before doing anything else, run this check:
 
 ```
-Does a {Game Name} Rules/ folder exist with rulebook/mechanics.md inside it?
+Step 1 — Scan for {Game Name} Rules/ folders containing rulebook/mechanics.md.
 
-  NO  → Run dm_setup.md in full before proceeding.
-        The first thing setup does is establish the game name and
-        create the {Game Name} Rules/ folder. Do not start a session,
-        generate a dungeon, or create characters until setup is complete.
+  NONE FOUND
+    → No campaigns exist yet. Run dm_setup.md in full.
+      Do not start a session or generate anything until setup is complete.
 
-  YES → Which game is the player asking about?
-        All paths for this session are relative to that game's
-        {Game Name} Rules/ folder.
+  ONE FOUND
+    → That game is active. Skip to Step 2.
 
-        Check: does {Game Name} Rules/dungeons/[name]/session-log.md exist?
+  MULTIPLE FOUND
+    → Present the list to the player before proceeding:
 
-          NO  → The player has a rulebook but no campaign yet.
-                Run dm_setup.md steps 6–9 (scenario, dungeon,
-                session-log, world-log) before starting play.
+      "I found [N] active campaigns:
+        1. [Game A Name] — last session: [date from session-log, if available]
+        2. [Game B Name] — last session: [date from session-log, if available]
+        ...
+        N+1. Start a new campaign
 
-          YES → Proceed to dm_session.md → Session Start.
+      Which would you like to continue, or start something new?"
+
+      Wait for selection. Then proceed to Step 2 with the chosen game.
+
+Step 2 — Check campaign state for the selected game.
+
+  Does {Game Name} Rules/dungeons/[any dungeon]/session-log.md exist?
+
+    NO
+      → Rulebook exists but no campaign yet.
+        Run dm_setup.md steps 6–9 (scenario, dungeon, session-log, world-log).
+
+    YES
+      → Does the most recent session-log entry have mid_session_notes
+        but no closing session summary? (Indicates an interrupted session.)
+
+        YES (session was interrupted)
+          → Proceed to dm_session.md → Session Resume.
+
+        NO (last session ended cleanly)
+          → Proceed to dm_session.md → Session Start.
 ```
 
 Do not skip or abbreviate setup. A campaign without mechanics.md cannot

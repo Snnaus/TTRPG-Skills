@@ -77,7 +77,7 @@ folder. Multiple games can run concurrently — they never share files.
 
 ### First Time Setup
 
-1. Open a new Claude conversation and attach or paste the contents of `SKILL.md` and `dm_skill.md`.
+1. Open a new Claude conversation and attach or paste the contents of `SKILL.md` and the relevant `dm_*.md` sub-skills.
 2. Tell Claude you want to start a new campaign and provide your rulebook — either paste the key mechanics or describe them from memory. (PDF parsing is a future feature; for now, text or description works.)
 3. Claude will confirm the game name, create a `{Game Name} Rules/` folder, then:
    - Parse the rulebook into `{Game Name} Rules/rulebook/mechanics.md`
@@ -87,16 +87,20 @@ folder. Multiple games can run concurrently — they never share files.
    - Ask for a scenario or offer to generate one
    - Generate the first dungeon's `layout.md` and initialize `session-log.md`
 
-### Starting a Session
+### Starting or Resuming a Session
 
-Load the following files into context at session start:
-- `SKILL.md` and `dm_skill.md`
-- The last 2–3 entries from `session-log.md`
+Load the following files into context:
+- `SKILL.md` and the relevant `dm_*.md` sub-skills
+- The most recent `session-log.md` entry (or last 2–3 entries)
 - The current dungeon's `layout.md`
 - Your `character-sheet.md` and `inventory.md`
-- Any companion `soul.md` files
+- Any companion `soul.md`, `character-sheet.md`, and `inventory.md` files
 
-Claude will validate your character state against the last session log (flagging any discrepancies), then give you a brief recap and ask where you want to begin.
+**Multiple campaigns** — if you have more than one `{Game Name} Rules/` folder, the DM will list all active campaigns (with last session date where available) and ask which you want to continue, or offer to start a new one.
+
+**Starting fresh** — Claude validates your character state against the last session log, flags any discrepancies, then gives a brief recap and asks where you want to begin.
+
+**Resuming an interrupted session** — if the last session was cut off mid-play (context lost, conversation ended unexpectedly), the DM detects this from the session log and automatically switches to resume mode: it reconstructs your current location from `layout.md`, checks your character state from the campaign files, and offers a short OOC recap before picking up exactly where you left off.
 
 ### During Play
 

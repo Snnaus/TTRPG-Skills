@@ -25,6 +25,45 @@ After validation, produce a brief recap of where we left off, then ask:
 
 ---
 
+## 1b. Session Resume (Interrupted Session)
+
+Use this path when SKILL.md's entry point detects an interrupted session —
+mid_session_notes present in the session-log but no closing summary.
+
+**Load the same files as Session Start:**
+- The most recent session-log.md (focus on mid_session_notes)
+- The current dungeon's layout.md
+- The player's character-sheet.md and inventory.md
+- Any companion soul.md, character-sheet.md, and inventory.md files
+
+**Reconstruct session state:**
+1. Read mid_session_notes from session-log.md — identify the last milestone
+   reached (last combat resolved, last NPC interaction, last rest).
+2. Read layout.md — find the room with status `entered`. That is the
+   player's current location. If multiple rooms show `entered`, the most
+   recently listed is current.
+3. Read the character-sheet.md and inventory.md files as authoritative
+   current state (they are maintained continuously during play).
+
+**Run a state validation check** (same as Session Start):
+- Compare character-sheet.md HP and resources against the last
+  mid_session_notes delta. Flag any discrepancy before resuming.
+- Check inventory.md against any items_gained or items_lost entries
+  in mid_session_notes.
+
+**Offer a resume prompt:**
+Give a brief recap of the last milestone and current location, then ask:
+
+  "(Session was interrupted. Here's where we left off: [one sentence
+  summary of last milestone]. You are in [current room description].
+  Ready to continue?)"
+
+Do not re-narrate the full session from the start. Pick up at the
+current room with the current state. If the player wants a longer
+recap, they can ask OOC.
+
+---
+
 ## 2. Active Play
 
 The DM operates in a conversational mode following the **beat-and-prompt** pattern:
