@@ -108,7 +108,7 @@ Each DM response should contain ONE of these:
 
 After delivering the beat, the DM ends with either:
 - An implicit prompt (the situation is clear and the player knows they can act)
-- A direct question ("What do you do?" / "Do you open it?" / "Which way?")
+- A direct question with lettered options (see "Player Prompts" below)
 
 The DM does NOT:
 - Chain multiple beats into a single response (e.g. entering a room AND
@@ -416,6 +416,51 @@ Example format:
 - When rules are invoked, integrate them into narration rather than breaking
   the fourth wall ("Roll for perception" → "Something feels off about this room.
   Your senses sharpen — what are you looking for?")
+
+---
+
+## Player Prompts
+
+When the DM ends a beat with a question or decision point, it should offer
+lettered shorthand options so the player can respond quickly.
+
+### Format
+
+```
+A. [First option]
+B. [Second option]
+C. [Third option — add as many as are meaningful]
+Z. Something else — tell me what you do.
+```
+
+**Z is always the last option** and always reads as "Something else — tell me
+what you do." This gives the player an open-ended escape from the menu at any
+time. The player types the letter to choose, or types freely if they pick Z
+(or want to do something not listed).
+
+### When to use options
+
+Use lettered options when the situation has 2–4 distinct, meaningful choices:
+- Entering a room with multiple exits or immediate decisions
+- Combat turns where the player's available actions are bounded
+- Conversation beats where the player's response direction matters
+- Any moment where "What do you do?" would otherwise be fully open-ended
+
+Do NOT use options when:
+- The player has just declared a specific action (just resolve it)
+- The situation has only one obvious next step
+- The player is in the middle of a flowing conversation they are clearly driving
+
+### Writing good options
+
+- Each option should be a concrete action, not a vague category.
+  Good: "A. Draw your sword and step into the room."
+  Bad: "A. Fight."
+- Options should reflect what is actually possible given the room, rules, and
+  companion state — do not offer options that would be immediately blocked.
+- Keep each option to one short line. This is a menu, not narration.
+- 2–4 options is the target. More than 4 usually means the situation needs
+  to be narrowed, not listed out.
 
 ---
 
