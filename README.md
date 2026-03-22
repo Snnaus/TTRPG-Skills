@@ -16,7 +16,7 @@ Supported with any system that has:
 - A combat structure
 - Some form of advancement
 
-Systems tested: Basic Fantasy RPG. Designed to work with D&D, Pathfinder, Blades in the Dark, Mothership, and similar systems.
+Designed to work with any system that fits the supported structure.
 
 ---
 
@@ -31,7 +31,7 @@ folder. Multiple games can run concurrently — they never share files.
 ├── SKILL.md                        ← Parent routing skill (start here)
 ├── dm_*.md                         ← System-agnostic DM sub-skills
 │
-├── Basic Fantasy RPG Rules/        ← Example: one game's full campaign data
+├── {Game Name} Rules/              ← Example: one game's full campaign data
 │   ├── rulebook/
 │   │   ├── mechanics.md            ← Parsed rules (generated at setup)
 │   │   └── sub-skills/
@@ -53,7 +53,7 @@ folder. Multiple games can run concurrently — they never share files.
 │           ├── character-sheet.md
 │           └── inventory.md
 │
-└── Pathfinder 2e Rules/            ← Second concurrent game, fully independent
+└── {Another Game} Rules/           ← Second concurrent game, fully independent
     └── ...
 ```
 
