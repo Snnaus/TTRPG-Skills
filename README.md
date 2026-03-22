@@ -91,9 +91,9 @@ Claude will validate your character state against the last session log (flagging
 
 ### During Play
 
-The DM operates in a **beat-and-prompt** pattern: one narrative beat per response, then the player acts. Rooms are generated on demand as you approach them.
+The DM operates in a **beat-and-prompt** pattern: one narrative beat per response, then the player acts. Most of the time responses are tight — 2–4 sentences of narration plus a prompt. For genuinely dramatic moments (boss defeats, near-death, irreversible choices, long-awaited revelations) the DM expands into a fuller cinematic beat before handing control back.
 
-**Player prompts** — at decision points, the DM will offer lettered shorthand options:
+**Player prompts** — at decision points, the DM offers lettered shorthand options:
 
 ```
 A. Draw your sword and step into the room.
@@ -102,11 +102,11 @@ C. Back away and find another route.
 Z. Something else — tell me what you do.
 ```
 
-Z is always the open-ended option. Type a letter to choose, or type freely to do something not listed.
+Z is always the open-ended option. Type a letter to choose, or type freely for anything not listed.
 
-**Player dialogue** — any spoken dialogue you include will be echoed back by the DM with a "you say" attribution before the scene continues.
+**Player dialogue** — any spoken dialogue you include will be echoed back with a "you say" attribution before the scene continues.
 
-**Out-of-character (OOC) communication** — wrap anything in parentheses `( )` to speak directly to the DM outside the fiction. The DM will reply in parentheses as well, then resume play where you left off.
+**Out-of-character (OOC) communication** — wrap anything in parentheses `( )` to speak to the DM outside the fiction. The DM replies in parentheses and resumes play after.
 
 ```
 (Wait, did I already use my spell today?)
@@ -115,53 +115,80 @@ Z is always the open-ended option. Type a letter to choose, or type freely to do
 
 The DM can remind you of past events, clarify rules, and confirm your current character state OOC. It will not reveal undiscovered room content, enemy stats, DM secrets, or future plot details.
 
-**Mid-session logging** — the DM automatically writes compact milestone entries to `session-log.md` during play (after combat, room clears, significant NPC interactions, companion moments, and major decisions). You do not need to manage this. You can ask OOC at any time to see what has been logged so far.
+**Skill checks (out of combat)** — before any out-of-combat roll, the DM tells you what stat or skill applies, the difficulty, any situational modifiers, and what's at stake — before asking for the roll.
+
+**Combat** — uses a declare-confirm-resolve loop. You can play mechanically ("I attack with my sword, I rolled a 14") or narratively ("I want to shove him into the brazier") — the DM translates narrative intent into mechanics and confirms what it means before resolving. Nothing in combat resolves without your confirmation first.
+
+**Dice rolls** — the DM handles all rolls inline. Player rolls are shown fully:
+
+```
+🎲 1d20 → 14 + 3 (STR) = 17 vs. Difficulty 14 — Success
+```
+
+DM rolls (enemy attacks, secret perception checks, trap triggers, NPC deception) are generated but not shown — only the narrative outcome is narrated. All DM rolls are logged to `session-log.md` and you can ask OOC to see any of them once the relevant scene is resolved.
+
+**File maintenance** — the DM keeps all campaign files current throughout play. You do not track state or apply deltas manually. As events happen the DM silently updates:
+- `character-sheet.md` — HP, XP, conditions, resources
+- `inventory.md` — items gained, consumed, lost, currency
+- `companions/[name]/character-sheet.md` and `inventory.md`
+- `layout.md` — room statuses as you approach, enter, clear, or alter rooms; new connections and discovered areas added as they are found
+- `rooms/[name].md` — generated when you move toward an unvisited room; alteration logs updated when you change a space
+- `session-log.md` — compact milestone entries after combat, significant NPC interactions, companion moments, and major decisions; DM roll audit log
+
+You can ask OOC at any time to see the current state of any file.
 
 ### Ending a Session
 
-Tell Claude the session is over whenever you want to stop. It will produce:
-- A full session summary entry for `session-log.md` (built from the mid-session notes)
-- An `updated_character_sheet` with all deltas already applied (copy-paste ready)
-- An `updated_inventory` with gains and losses applied
-- Companion soul update blocks (one per companion)
-- A list of any room files generated this session
-
-You then copy the updated files back into your campaign folder before the next session.
+Tell Claude the session is over whenever you want to stop. The DM will:
+1. Reconcile all files against the session's milestone notes — correcting any discrepancies silently
+2. Update each active companion's `soul.md` with any state changes from this session
+3. Write the full narrative session summary to `session-log.md`
+4. Update the Running Tracker (advancement, open hooks, significant NPCs, world-state changes)
+5. Update `campaign/world-log.md` if anything this session has consequences beyond the current dungeon
 
 ---
 
 ## Key Design Features
 
+### Active File Management
+
+The DM owns all campaign files during play. Character sheets, inventories, dungeon layouts, and room files are updated at the moment changes occur — not batched to session end. Session end is a reconciliation and summary step, not a data-entry step.
+
+### Dungeon Generation
+
+Uses a **"develop as you go"** model. `layout.md` defines the skeleton upfront (room manifest, connections, threat level, narrative hooks). Individual room files are generated the moment you move toward an unvisited room. Newly discovered connections and unexpected dungeon depth are added to `layout.md` as they are found.
+
+### Dice Rolling and Auditing
+
+All dice are rolled by the DM inline. Player rolls are fully visible. DM rolls for sensitive information (enemy attacks, secret checks) are withheld at the time but logged to an append-only audit trail in `session-log.md`. You can request to see any DM roll OOC once the scene is resolved.
+
 ### Companion System
 
-Persistent party members have a `soul.md` with personality, core belief, current goal, and relationship state. Relationship is tracked on two dimensions:
+Persistent party members have a `soul.md` with personality, core belief, current goal, and relationship state tracked on two dimensions:
 
 - **Base level:** distant → neutral → warm → devoted
 - **Tension overlay:** none / strained / conflicted (independent of base level)
 
-Companions develop through play — their internal state shifts whether or not the player engages with story beats. Ignored threads accumulate. Under extreme conditions (core belief betrayed, 4+ sessions of ignored threads), companions can withdraw, confront the player, or act independently.
+Companions develop through play whether or not you engage with story beats. Ignored threads accumulate. Under extreme conditions (core belief betrayed, 4+ sessions of ignored threads), companions can withdraw, confront you, or act independently.
 
-### Dungeon Generation
+### Cinematic Moments
 
-Uses a **"develop as you go"** model. `layout.md` defines the skeleton upfront (room manifest, connections, threat level, narrative hooks). Individual room files are generated when the player is one move away from entering — keeping context lean and dungeons feeling alive.
+Most play uses tight 2–4 sentence pacing. For genuinely significant moments — boss defeats, near-death, irreversible high-stakes choices, long-awaited revelations — the DM expands into a fuller cinematic beat with sensory detail, world reaction, and deliberate rhythm. These moments are reserved, not routine.
 
 ### Multi-Location Campaigns
 
-When a dungeon is complete, unresolved hooks and significant NPCs are migrated to `campaign/world-log.md`. This file is the bridge between locations — anything that matters beyond one dungeon lives there.
+When a dungeon is complete, unresolved hooks and significant NPCs are migrated to `campaign/world-log.md` — the bridge between locations that preserves continuity across the full campaign.
 
 ### Undefined Rules
 
-When a situation isn't covered by `mechanics.md`, the DM first looks for an analogy in the defined system. If none exists, it asks the player how to handle it, then records the ruling in the session log. Improvised rulings are never silent.
+When a situation isn't covered by `mechanics.md`, the DM looks for an analogy in the defined system first. If none exists, it asks the player how to handle it, then records the ruling in the session log. Improvised rulings are never silent.
 
 ---
 
-## What This Does NOT Handle (Prototype Limitations)
+## What This Does NOT Handle
 
-- **Dice rolling** — resolve narratively or roll physical dice; results are player-reported
-- **File writes** — player copies updated files manually at session end
 - **Multiplayer coordination**
 - **Rulebook PDF parsing** — paste or describe key rules instead
-- **Automated state management** — the DM produces ready-to-copy output; automation is future work
 
 ---
 

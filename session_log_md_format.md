@@ -67,6 +67,21 @@ sessions:
   - session: 1
     date: [YYYY-MM-DD]
 
+    dm_rolls:
+      # Audit log of all DM rolls made this session.
+      # Appended immediately when the roll is made — never edited after the fact.
+      # Results are withheld from the player at the time if the information is
+      # sensitive. The player may ask OOC to review any entry once the relevant
+      # encounter or scene is resolved.
+      - label: "[e.g. Guard perception check — R03]"
+        dice: "[e.g. 1d20]"
+        result: "[individual die result(s) — e.g. 6]"
+        modifier: "[modifier value and source — e.g. +2 (WIS) | none]"
+        total: "[final total — e.g. 8]"
+        context: "[What this roll determined — e.g. 'Guard failed to notice player hiding behind crates']"
+        revealed: false  # Set to true once the player has been told the result
+      # Continue appending entries below as rolls occur.
+
     mid_session_notes:
       # Written by the DM automatically during play at key story milestones.
       # Each entry is appended as events occur — do not edit previous entries.

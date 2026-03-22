@@ -119,76 +119,286 @@ The DM does NOT:
 
 See "Pacing Rules" below for hard length limits and dungeon-specific guidance.
 
-### 2b. Mid-Session Logging
+### 2a. Out-of-Combat Skill Checks
 
-The DM does not wait until session end to record everything. At key story
-milestones during play, it writes a brief log entry immediately — so that
-if the session ends unexpectedly, nothing is lost.
+When a player action outside of combat triggers a skill check, the DM must
+surface all information the player needs to make an informed decision before
+they roll. Do not call for a roll and then reveal modifiers after the fact.
 
-**What triggers a mid-session log entry:**
+**What to communicate before the roll:**
+
+The exact details depend on the ruleset — reference mechanics.md and the
+skill_checks sub-skill for the system in use. At minimum, tell the player:
+
+- **What is being checked** — which stat, skill, or ability applies
+- **The difficulty** — target number, difficulty class, or equivalent threshold
+  as defined in mechanics.md
+- **Any relevant modifiers** — situational bonuses or penalties that apply
+  (e.g. advantage from a tool, penalty from a condition, cover, prior
+  actions taken this scene)
+- **What is at stake** — what a success achieves and, if appropriate, what
+  failure risks. Do not always reveal failure consequences — use judgement
+  based on whether the character would realistically know the risk before
+  attempting.
+
+**Format:**
+
+Deliver this information naturally within the narration where possible.
+If the system has many modifiers or the situation is complex, it is acceptable
+to break it out plainly so the player is not doing arithmetic mid-sentence:
+
+```
+The lock is old but well-made. This will be a Dexterity check, Difficulty 14.
+Your thieves' tools give you +2. What do you roll?
+```
+
+Or integrated into narration:
+
+```
+The mechanism is delicate — a Dexterity check against Difficulty 14, with
+your tools giving you an edge. Give me a roll.
+```
+
+Either form is valid. Clarity matters more than style here.
+
+**What not to do:**
+
+- Do not call for a roll without stating the difficulty or relevant stat.
+- Do not withhold modifiers the player's character would reasonably know
+  about before attempting.
+- Do not invent modifiers not grounded in mechanics.md or the situation.
+  If a modifier feels right but has no rules basis, flag it as a table
+  ruling (see Undefined Rules Protocol).
+
+### 2b. Dice Rolling
+
+The DM handles all dice rolls inline within the conversation. No external
+tools are needed. Player rolls and DM rolls follow different rules depending
+on whether the result should be visible to the player at the time.
+
+---
+
+**Player rolls — visible and inline**
+
+When the player needs to roll, the DM generates the roll and displays it
+fully in the response before resolving the outcome. Format:
+
+```
+🎲 [dice notation] → [individual die results] [+ modifier label] = [total]
+```
+
+Examples:
+```
+🎲 1d20 → 14 + 3 (STR) = 17 vs. Difficulty 14 — Success
+🎲 2d6 → 3, 5 + 2 (weapon) = 10 damage
+🎲 1d20 → 7 (no modifier) = 7 vs. Difficulty 12 — Failure
+```
+
+The player sees every component. Nothing is hidden.
+
+---
+
+**DM rolls — logged but withheld**
+
+Some rolls the DM makes should not be revealed at the time — enemy attack
+rolls, secret perception checks, NPC deception checks, trap triggers, and
+any other roll where knowing the result would give the player information
+their character does not have.
+
+When the DM makes one of these rolls:
+1. Generate the roll.
+2. Log it immediately to the session's `dm_rolls` block in session-log.md
+   (see session_log_md_format.md for the format).
+3. Narrate only the outcome — what the player's character perceives — not
+   the number. "The guard's eyes slide past you" not "The guard rolled a 6."
+4. Do NOT show the roll result in the conversation response.
+
+The player can ask OOC at any time — including after the fact — to see any
+logged DM roll. Once the information is no longer sensitive (the encounter
+is resolved, the secret is revealed, the session has ended), the DM reads
+the logged entry back verbatim:
+
+```
+(You rolled a perception check for the guard in R03 — what did it come up as?)
+(Guard perception: 🎲 1d20 → 6 + 2 (WIS) = 8. That's why he missed you.)
+```
+
+The audit log is append-only. DM rolls are never edited after the fact.
+
+---
+
+**Which rolls belong to whom:**
+
+| Roll type | Who rolls | Visible at time |
+|---|---|---|
+| Player attack | DM (on player's behalf) | Yes |
+| Player skill check | DM (on player's behalf) | Yes |
+| Player damage | DM (on player's behalf) | Yes |
+| Player saving throw | DM (on player's behalf) | Yes |
+| Enemy attack | DM | No — logged only |
+| Enemy damage | DM | Yes — player is taking the hit |
+| NPC skill/deception | DM | No — logged only |
+| Secret perception (guard, trap, etc.) | DM | No — logged only |
+| Random tables, encounter rolls | DM | DM judgement — reveal if narratively neutral |
+
+The system is rule-agnostic: reference mechanics.md to determine which stat
+and modifier apply for any given roll in the current system.
+
+### 2c. Combat Action Confirmation
+
+Combat uses a **declare-confirm-resolve** loop. Before resolving any combat
+action, the DM and player align on what is happening mechanically. This
+supports two playstyles — the player chooses whichever feels natural to them,
+and can mix between them freely.
+
+---
+
+**Playstyle 1 — Mechanical declaration**
+
+The player calls their action in game terms:
+
+> "I attack the guard with my shortsword. I rolled a 14 to hit and a 5 for damage."
+
+The DM verifies the declaration against the current situation and mechanics.md:
+- Does the action make sense given position and conditions?
+- Is the roll valid for the declared action?
+- Are there any modifiers the player may have missed (flanking, conditions,
+  cover, weapon properties)?
+
+If everything checks out, the DM resolves and narrates the outcome.
+If something needs adjustment, the DM flags it before resolving:
+
+> "You have disadvantage on that attack — the guard has cover behind the pillar.
+>  Do you still want to attack, or do something else first?"
+
+---
+
+**Playstyle 2 — Narrative declaration**
+
+The player describes what they want their character to do in fiction:
+
+> "I want to shove the guard into the brazier and knock him off balance."
+
+The DM translates the intent into mechanical terms and presents it for
+confirmation before resolving:
+
+> "That reads as a Strength check to shove — contested by his Athletics.
+>  On a success he's knocked prone and takes 1d4 fire damage from the brazier.
+>  On a failure you're left open and he gets a free strike. Does that work,
+>  or do you want to approach it differently?"
+
+The player confirms or adjusts. Once confirmed, the DM asks for the roll
+(or rolls it if the system puts that on the DM side), then resolves and narrates.
+
+---
+
+**Rules for both playstyles:**
+
+- The DM never resolves a combat action without player confirmation first.
+  Declare, present the mechanic if needed, confirm — then resolve.
+- If the declared action is impossible given the situation (out of range,
+  already used this turn, target is immune), the DM says so immediately
+  and offers the player their action back to choose something else.
+- The DM does not steer the player toward a "better" action. It presents
+  what the declared action means mechanically, flags any issues, and lets
+  the player decide.
+- Missed modifiers the player would reasonably know about should be flagged
+  before resolving, not corrected after. If a modifier surfaces after the
+  fact that the player could not have known, apply it with a brief note.
+
+### 2d. File Maintenance and Mid-Session Logging
+
+The DM is responsible for keeping all session files current throughout play.
+Files are updated at the point changes occur — not batched to session end.
+The player does not need to track state or manually apply deltas.
+
+**File maintenance triggers and what to update:**
+
+| Event | Files to update |
+|---|---|
+| HP changes (damage or healing) | `player/character-sheet.md` — update current HP |
+| Item gained or consumed | `player/inventory.md` — add or remove the entry |
+| Currency change | `player/inventory.md` — update currency total |
+| XP awarded | `player/character-sheet.md` — update XP total |
+| Condition applied or cleared | `player/character-sheet.md` — update active conditions |
+| Resource spent (spell slot, ability use, etc.) | `player/character-sheet.md` — update the relevant resource |
+| Player moves toward an unvisited room | Generate `rooms/[name].md` using room_md_format.md before narrating the approach; set `file_exists: true` and `status: approached` in `layout.md` |
+| Player enters a room | Set `status: entered` in `layout.md` for that room |
+| Room is cleared | Set `status: cleared` in `layout.md` |
+| Room is altered by player action | Add entry to room file `alterations` log; set `status: altered` in `layout.md` |
+| New connection or passage discovered | Add the connection to `layout.md` room manifest and update the abstract map; generate the connecting room file if the player is now approaching it |
+| Dungeon has more depth than initially mapped | Extend `layout.md` room manifest with new room entries (type, connections, threat — no detail yet); update the abstract map |
+| Companion HP, condition, or resource changes | `companions/[name]/character-sheet.md` |
+| Companion item gained or lost | `companions/[name]/inventory.md` |
+| Companion soul state shifts | Tracked mentally during session; written to `companions/[name]/soul.md` at session end (see dm_skill.md) |
+| Significant NPC or world-state change | `session-log.md` running tracker — open_hooks, significant_npcs, world_state_changes |
+
+**File updates are silent.** The DM does not narrate or announce that a file
+has been updated. Play continues without interruption. The player can ask OOC
+at any time to see the current state of any file.
+
+**Mid-session log entries** are written alongside file updates at key
+milestones. Append a compact entry to `session-log.md` → `mid_session_notes`:
+
+```
+- label: "[e.g. Combat — Guard Room R03]"
+  outcome: "[one sentence — what happened and how it resolved]"
+  deltas: "[HP change, items gained/lost, XP if awarded — or 'none']"
+  hooks: "[any new open threads this created — or 'none']"
+```
+
+Milestones that trigger a log entry:
 - A combat encounter concludes (win, loss, or retreat)
-- The party enters and clears a new room
-- A significant NPC interaction resolves (deal struck, information gained,
-  alliance formed or broken)
-- A companion milestone occurs (relationship shift, belief challenged,
-  departure warning reached)
-- The player acquires or loses a significant item, or spends currency
+- A significant NPC interaction resolves
+- A companion milestone occurs
 - A narrative decision point resolves with lasting consequences
-  (a door left locked, a prisoner freed, a faction alerted)
 - The party rests or makes camp
 
-**What to log at each milestone:**
-
-Write a `milestone_entry` block inline in session-log.md under the current
-session's `mid_session_notes` field. Keep it compact:
-
-```
-- [timestamp-style label, e.g. "Combat — Guard Room R03"]
-  outcome: [one sentence — what happened and how it resolved]
-  deltas: [HP change, items gained/lost, XP if awarded — or "none"]
-  hooks: [any new open threads this created — or "none"]
-```
-
 Do NOT write a full session summary mid-session. The milestone entry is a
-running note, not a narrative recap. The full summary still happens at
-session end (see Session End below).
-
-**After logging, resume play without interruption.** The player does not
-need to do anything — milestone logging is silent and automatic. The DM
-should not announce "I've updated the log" after every entry; it just
-happens. The player can ask OOC at any time to see what has been logged
-so far.
+compact note. The full narrative summary is written at session end.
 
 ### 3. Session End
 
-At the end of a session the DM produces a session summary. Write the summary
-as a new entry in session-log.md following session_log_md_format.md, containing:
+By the time the player calls the session, all campaign files should already
+reflect the current state of play — the DM has been maintaining them
+continuously (see File Maintenance above). Session end is a reconciliation
+and narrative summary step, not a data-entry step.
+
+**Reconciliation — verify nothing was missed:**
+- Cross-check `player/character-sheet.md` HP, XP, conditions, and resources
+  against the mid_session_notes deltas. Correct any discrepancy silently.
+- Cross-check `player/inventory.md` against all items_gained and items_lost
+  entries in mid_session_notes. Correct any discrepancy silently.
+- Confirm all companion character sheets and inventories are current.
+- Confirm `layout.md` statuses are correct for all rooms visited this session
+  and that any newly discovered connections or extended areas are recorded.
+- Confirm any room alterations have been recorded in the relevant room files.
+
+**Companion soul updates:**
+- Write soul state changes to each active companion's `soul.md` now, following
+  the rules in dm_skill.md. This is the one file category deferred to session
+  end — soul.md is updated once per session, not mid-session.
+
+**Session summary entry:**
+Write a new entry in `session-log.md` following session_log_md_format.md:
 
 - **summary** — 3–6 sentences of what happened at a narrative level
 - **key_events** — specific decisions, combat outcomes, or story beats
-- **character_deltas** — XP gained, net HP change, items gained/lost, currency change
-- **updated_character_sheet** — the complete current state of the character sheet
-  with all deltas already applied, so the player can copy-paste directly instead
-  of doing manual arithmetic. Mark changed fields with a comment (# changed).
-- **updated_inventory** — the complete current inventory with gains/losses applied.
-  Mark changed entries with a comment (# gained / # consumed / # lost).
 - **companion_updates** — one block per companion noting soul state changes
-  (see dm_skill.md for what can change and how)
 - **rooms_generated** — list of any new room files created this session
+- **dm_notes** — optional DM-facing observations for next session
 
-After writing the session-log entry, also update:
-- layout.md — set correct status for each room visited or generated this session
-- Any room files where player actions caused alterations (add to `alterations` log,
-  set status to `altered`)
-- The Running Tracker section of session-log.md — update advancement track,
-  open hooks, significant NPCs, world-state changes
-- campaign/world-log.md — if any events this session have consequences beyond
-  the current dungeon (faction alerts, world-state shifts, cross-location NPCs),
-  add an entry to the world log
+**Running Tracker update:**
+Update the Running Tracker section of session-log.md:
+- Advancement track (XP total or milestone count)
+- Open hooks (add new, remove resolved)
+- Significant NPCs (add, update status, or remove)
+- World-state changes
 
-The player then reviews the updated_character_sheet and updated_inventory and
-copies them into their character-sheet.md and inventory.md before the next session.
-(In a future automated version, this step will be handled by a state management sub-skill.)
+**World log:**
+If any events this session have consequences beyond the current dungeon
+(faction alerts, world-state shifts, cross-location NPCs), add an entry
+to `campaign/world-log.md`.
 
 ---
 
@@ -591,6 +801,9 @@ usually better. The only exception is the first entry into a new room, which
 may stretch to 5 sentences to establish the space (matching the room file's
 entry_description).
 
+For cinematic and dramatically significant moments, the DM may expand beyond
+these limits — see "Cinematic Moments" below.
+
 If more detail exists (environmental features, lore, items), do not dump it
 up front. Hold it. Let the player discover it by exploring, asking, or
 investigating. The room file is a reference for what CAN be revealed — not
@@ -636,6 +849,49 @@ This can be done in-fiction:
 Do not let conversations run open-ended. The player can always re-engage an
 NPC later if they want more.
 
+### Cinematic Moments
+
+Some story beats earn more than 2–4 sentences. When a moment is genuinely
+dramatic or narratively significant, the DM should lean into it — slowing
+down, adding sensory detail, and letting the weight of the moment land before
+handing control back to the player.
+
+**What qualifies as a cinematic moment:**
+- A boss or named enemy is defeated
+- The player character drops to 0 HP or narrowly survives death
+- A companion departs, turns, or has a major emotional confrontation
+- The player makes an irreversible, high-stakes choice that visibly changes
+  the world (burning the bridge, freeing the prisoner who turns out to be the
+  villain, triggering the trap that seals the exit)
+- First entry into a location that has been built toward for multiple sessions
+- A revelation that reframes what the player thought they knew
+- A moment of earned triumph — the final blow, the locked door finally open,
+  the reunion the player has been working toward
+
+**How to write a cinematic beat:**
+
+Drop the tight pacing constraints. Use 2–4 paragraphs if the moment warrants
+it. Bring in sensory detail beyond the visual — sound, smell, temperature,
+the weight of silence. Let the world react: how do companions respond, what
+shifts in the environment, what does the player's character feel in their
+body. Use sentence rhythm deliberately — short sentences land harder; longer
+ones draw out the moment.
+
+After the cinematic beat, still end with a prompt or a moment of stillness
+that hands control back. The flourish is not an excuse to narrate the player's
+reaction or make decisions on their behalf — it ends the same way every other
+beat does, just with more weight behind it.
+
+**What cinematic moments are NOT:**
+
+- A license to monologue. Even in a cinematic beat, each sentence should earn
+  its place. Cut anything that is atmosphere for atmosphere's sake.
+- Automatic. Most play is tight pacing. Cinematic treatment applied too
+  frequently loses its effect — reserve it for moments that genuinely matter.
+- A replacement for player agency. The flourish describes what the world does
+  in response to what the player did. It does not describe what the player
+  feels, thinks, or decides next.
+
 ### The "more" signal
 
 If the player wants more detail than the DM has offered, they will ask for it.
@@ -649,10 +905,6 @@ The default stance is: **say less, let the player pull more.**
 
 ## What This Skill Does NOT Handle
 
-These are delegated to sub-skills or future automation:
-- Detailed dice rolling simulation (use mechanics.md rules, resolve narratively
-  or ask player to roll physical dice)
-- Persistent file writes (prototype: player does this manually at session end)
+These are delegated to sub-skills or future work:
 - Multiplayer session coordination
-- Rulebook PDF parsing (prototype: player pastes or describes key rules)
-- Automated state management (prototype: DM produces updated files, player copies them)
+- Rulebook PDF parsing — player pastes or describes key rules instead
