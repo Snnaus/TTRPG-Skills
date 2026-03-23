@@ -1,10 +1,22 @@
 # [mechanic-name].md — Generated Sub-Skill
 # SKILL: rulebook/sub-skills/[mechanic-name].md
-# FORMAT VERSION: 1.1
+# FORMAT VERSION: 1.2
 # Generated at setup by the parent DM skill.
 # Parent system: [System name and edition]
 # This sub-skill owns a specific mechanical domain during play.
 # The parent SKILL.md routes to this file when that domain is invoked.
+#
+# ──────────────────────────────────────────────────────────────────────
+# DM EXECUTION RULE: When this sub-skill is invoked, the DM reads and
+# executes the Resolution Procedure steps SEQUENTIALLY. Do not skip
+# steps or resolve from general system knowledge. Each step references
+# mechanics.md by section name — load those sections into context
+# alongside this file before resolving.
+#
+# If a situation is not covered by the steps below, check the Edge Cases
+# section. If it is not covered there either, follow the Undefined Rules
+# Protocol in dm_setup.md. Do not silently invent rulings.
+# ──────────────────────────────────────────────────────────────────────
 
 ---
 ## Purpose
@@ -28,8 +40,11 @@ does_not_handle: >
 # Point to the relevant sections of mechanics.md by heading name.
 # Do NOT copy the rules here — mechanics.md is the single source of truth.
 # If mechanics.md is corrected, these references stay valid automatically.
-# When this sub-skill is loaded into context, load the referenced sections
-# of mechanics.md alongside it (see Context Management in SKILL.md).
+#
+# LOADING INSTRUCTION: When the DM loads this sub-skill, it MUST also load
+# the mechanics.md sections listed below. Both files are needed in context
+# for the Resolution Procedure to execute correctly. If a referenced section
+# cannot be found in mechanics.md, flag the gap to the player before resolving.
 
 references:
   - file: mechanics.md
@@ -46,7 +61,15 @@ references:
 
 # Step-by-step instructions for how to run this mechanic during play.
 # Written as a decision tree or ordered checklist.
-# The goal: a consistent, repeatable process that does not require the DM to improvise rules.
+#
+# THE DM FOLLOWS THESE STEPS IN ORDER. Each step is a concrete instruction.
+# Do not skip ahead, combine steps, or resolve from general knowledge of
+# the system. If a step says "Use the difficulty_scale from mechanics.md",
+# look it up — do not guess. If a step produces a value needed by a later
+# step, carry it forward explicitly.
+#
+# The goal: a consistent, repeatable process that produces the same ruling
+# regardless of which session or context window the DM is operating in.
 # Reference specific mechanics.md fields by name (e.g. "Use the difficulty_scale
 # from mechanics.md") rather than repeating their values.
 
@@ -58,12 +81,16 @@ steps:
       turn order to player."]
   3. [Continue through the full resolution process for this mechanic.]
   # Add as many steps as needed. Each step should be a single clear instruction.
+  # Steps that reference mechanics.md should name the exact section and field.
 
 ---
 ## Edge Cases
 
 # Common complications and how to resolve them.
 # Each entry is a situation the DM may encounter and the correct ruling.
+# The DM checks this section BEFORE improvising or applying the Undefined
+# Rules Protocol. If the situation is listed here, use this ruling.
+# New edge cases discovered during play should be added here at session end.
 
 edge_cases:
   - situation: [e.g. "Player wants to take an action not listed in the rules"]
@@ -87,8 +114,8 @@ reads_from:
 
 outputs_to:
   - [Where results of this sub-skill are reported — e.g. "Narration: DM describes outcome"]
-  - [e.g. "Session end: HP changes noted in session summary for player to apply to character-sheet.md"]
-  - [e.g. "If enemy is defeated: update room status in layout.md at session end"]
+  - [e.g. "character-sheet.md → HP updated immediately via dm_files.md"]
+  - [e.g. "layout.md → room status updated if enemies defeated"]
 
 triggers_other_sub_skills:
   - [Sub-skill that may be invoked as a result of this one —

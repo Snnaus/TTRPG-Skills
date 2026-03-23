@@ -17,7 +17,34 @@ sub-skills and file references.
 
    Create the top-level folder: **{Game Name} Rules/**
 
-2. Ask the player to paste or describe their rulebook (or key mechanics).
+2. Ask the player how they want to provide the rulebook. Three input methods
+   are supported:
+
+   **Method A — PDF upload (recommended for complete rulebooks)**
+   The player uploads a PDF file of their rulebook. The DM runs the extraction
+   procedure in dm_pdf_ingest.md to read the PDF, extract the rules content,
+   and present a summary for player confirmation before proceeding to step 3.
+
+   This method produces the most complete and accurate mechanics.md because
+   it works from the actual rulebook text rather than the player's memory.
+
+   **Method B — Pasted text**
+   The player pastes the relevant rules sections directly into the conversation.
+   The DM proceeds to step 3 with the pasted content. This works well when
+   the player has digital access to their rulebook but not a PDF, or when
+   they want to provide only specific sections.
+
+   **Method C — Described from memory**
+   The player describes the key mechanics from memory. The DM asks clarifying
+   questions to fill gaps, then proceeds to step 3. This is the least precise
+   method — the DM should flag any areas where the description is ambiguous
+   and note them as "described from memory — verify if issues arise" in
+   mechanics.md.
+
+   For any method, the DM needs sufficient information to populate all sections
+   of mechanics.md. If the provided input (whether PDF, pasted text, or
+   description) does not cover a required section, ask the player to fill in
+   the gap before proceeding. Do not guess at missing rules.
 
 3. Parse the rulebook and generate **{Game Name} Rules/rulebook/mechanics.md**
    using mechanics_md_format.md. Populate every section from the provided rules:
@@ -26,8 +53,13 @@ sub-skills and file references.
    - Combat structure (initiative, action economy, damage, conditions, defeat)
    - Advancement system (XP, milestones, or equivalent)
    - Any unique mechanics specific to this system (spell slots, sanity, stress, etc.)
-   Do not invent values. If the player did not provide a rule, note it as
+   Do not invent values. If a rule was not provided, note it as
    "not provided — ask player" rather than filling in a guess.
+
+   In the `source` field of mechanics.md, record how the rules were provided:
+   - `"extracted from PDF: [filename]"` for Method A
+   - `"pasted by player"` for Method B
+   - `"described from memory by player"` for Method C
 
 4. Generate sub-skills from mechanics.md using generated_skill_format.md.
    Create one sub-skill file per mechanical domain the system requires at

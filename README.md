@@ -78,7 +78,10 @@ folder. Multiple games can run concurrently — they never share files.
 ### First Time Setup
 
 1. Open a new Claude conversation and attach or paste the contents of `SKILL.md` and the relevant `dm_*.md` sub-skills.
-2. Tell Claude you want to start a new campaign and provide your rulebook — either paste the key mechanics or describe them from memory. (PDF parsing is a future feature; for now, text or description works.)
+2. Tell Claude you want to start a new campaign and provide your rulebook using one of three methods:
+   - **PDF upload (recommended):** Upload your rulebook PDF. Claude will extract the rules content, identify core mechanics, and present a summary for you to confirm before proceeding. This produces the most complete and accurate rules parsing. *(Include `dm_pdf_ingest.md` in your context load for this method.)*
+   - **Pasted text:** Copy and paste the key mechanics sections from your rulebook directly into the chat.
+   - **Described from memory:** Describe the core rules and Claude will ask clarifying questions to fill in gaps.
 3. Claude will confirm the game name, create a `{Game Name} Rules/` folder, then:
    - Parse the rulebook into `{Game Name} Rules/rulebook/mechanics.md`
    - Generate system-specific sub-skills (at minimum: `combat_resolution` and `skill_checks`)
@@ -177,6 +180,10 @@ Uses a **"develop as you go"** model. `layout.md` defines the skeleton upfront (
 
 All dice are rolled by the DM inline. Player rolls are fully visible. DM rolls for sensitive information (enemy attacks, secret checks) are withheld at the time but logged to an append-only audit trail in `session-log.md`. You can request to see any DM roll OOC once the scene is resolved.
 
+### PDF Rulebook Ingestion
+
+The DM can read PDF rulebooks directly. Upload your rulebook PDF during setup and the DM will extract the rules content using a multi-strategy approach: text extraction for text-based PDFs, page rasterization for scanned documents, and targeted table extraction for stat blocks and reference charts. The DM presents a summary of what it found for your confirmation before parsing into mechanics.md. See `dm_pdf_ingest.md` for the full extraction procedure.
+
 ### Companion System
 
 Companions are fully built player characters controlled by the DM — not followers or assistants. They have complete character sheets (proper stats, class abilities, equipment) and act as co-protagonists with their own goals, opinions, and story arcs.
@@ -210,12 +217,21 @@ When a dungeon is complete, unresolved hooks and significant NPCs are migrated t
 
 When a situation isn't covered by `mechanics.md`, the DM looks for an analogy in the defined system first. If none exists, it asks the player how to handle it, then records the ruling in the session log. Improvised rulings are never silent.
 
+### Context Window Management
+
+Long sessions consume context. As the conversation grows, the earliest loaded content — rules, companion personalities, game state — can drift out of effective attention. The DM uses a three-part system to prevent this:
+
+- **Tiered file loading** — files are classified into three tiers (always-active, scene-active, reference-only) based on how critical they are. The DM loads and releases files according to their tier.
+- **Refresh checkpoints** — at scene transitions (entering a room, starting combat, ending combat, companion story beats), the DM re-reads the core rules files needed for the upcoming scene type. If 8+ player turns pass without a refresh, one is triggered automatically.
+- **Context snapshots** — at every milestone (combat resolved, NPC interaction, rest), the DM writes a compact state summary to the session log. This serves as a recovery point if the session is interrupted or if context pressure forces earlier content out.
+
+If context pressure becomes severe, the DM may suggest a natural save point — but only once, and only as a suggestion. See `dm_context.md` for the full protocol.
+
 ---
 
 ## What This Does NOT Handle
 
 - **Multiplayer coordination**
-- **Rulebook PDF parsing** — paste or describe key rules instead
 
 ---
 
@@ -230,10 +246,12 @@ When a situation isn't covered by `mechanics.md`, the DM looks for an analogy in
 | `dm_resolution.md` | Any skill check or combat | Skill checks, dice rolling, combat confirmation |
 | `dm_files.md` | Always (background) | File maintenance, mid-session logging, context management |
 | `dm_setup.md` | First time setup or rules questions | Campaign setup, character creation, undefined rules |
+| `dm_pdf_ingest.md` | Player uploads a PDF rulebook during setup | PDF extraction, content diagnosis, targeted page reading |
 | `dm_dungeon.md` | Room generation or location transitions | Dungeon generation, multi-location campaigns |
 | `dm_companions.md` | Any session with companions | Companion types, agency, character development |
 | `dm_skill.md` | Session end or companion story beats | soul.md updates, surfacing rules, departure rules |
 | `dm_narration.md` | Always (background) | Tone, voice, pacing, OOC communication, player prompts |
+| `dm_context.md` | Always (background) | Context window management, refresh checkpoints, snapshot format, pressure protocol |
 
 **Format templates** — used when generating campaign files:
 

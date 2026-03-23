@@ -3,16 +3,48 @@
 
 ---
 
+## Sub-Skill Loading — Do This First
+
+Before resolving ANY mechanical action, the DM MUST load the relevant
+generated sub-skill file from the active game's rulebook folder and follow
+its Resolution Procedure step by step.
+
+Do not resolve from memory, general system knowledge, or paraphrased rules.
+Open the file. Read the steps. Execute them in order.
+
+| Situation | File to load |
+|---|---|
+| Any combat action (attack, defend, use ability in combat) | `{Game Name} Rules/rulebook/sub-skills/combat_resolution.md` |
+| Any non-combat skill check (ability test, saving throw outside combat) | `{Game Name} Rules/rulebook/sub-skills/skill_checks.md` |
+| Spell, magic, or equivalent system-specific ability | `{Game Name} Rules/rulebook/sub-skills/spell_resolution.md` (if it exists) |
+| Any other system-specific mechanic | Check `{Game Name} Rules/rulebook/mechanics.md` → `sub_skills` section to find which sub-skill owns the mechanic, then load that file |
+
+**What "load" means in practice:**
+1. Read the sub-skill file into context.
+2. Read the `references` section — it lists which sections of `mechanics.md`
+   are needed alongside it. Load those sections too.
+3. Follow the `steps` in the Resolution Procedure sequentially.
+4. If an edge case arises, check the sub-skill's `edge_cases` section before
+   improvising.
+
+If the required sub-skill file does not exist (e.g. no `spell_resolution.md`
+was generated at setup), check whether `mechanics.md` covers the mechanic
+inline. If not, follow the Undefined Rules Protocol in dm_setup.md.
+
+---
+
 ## Out-of-Combat Skill Checks
 
 When a player action outside of combat triggers a skill check, the DM must
-surface all information the player needs to make an informed decision before
-they roll. Do not call for a roll and then reveal modifiers after the fact.
+first load the `skill_checks` sub-skill (see table above), then surface all
+information the player needs to make an informed decision before they roll.
+Do not call for a roll and then reveal modifiers after the fact.
 
 **What to communicate before the roll:**
 
-The exact details depend on the ruleset — reference mechanics.md and the
-skill_checks sub-skill for the system in use. At minimum, tell the player:
+The exact details depend on the ruleset — reference the loaded sub-skill's
+Resolution Procedure and the relevant sections of mechanics.md. At minimum,
+tell the player:
 
 - **What is being checked** — which stat, skill, or ability applies
 - **The difficulty** — target number, difficulty class, or equivalent threshold
@@ -53,6 +85,8 @@ Either form is valid. Clarity matters more than style here.
 - Do not invent modifiers not grounded in mechanics.md or the situation.
   If a modifier feels right but has no rules basis, flag it as a table
   ruling (see dm_setup.md → Undefined Rules Protocol).
+- Do not resolve checks from general knowledge of the system — always
+  verify against the loaded sub-skill and mechanics.md.
 
 ---
 
@@ -127,8 +161,8 @@ The audit log is append-only. DM rolls are never edited after the fact.
 | Secret perception (guard, trap, etc.) | DM | No — logged only |
 | Random tables, encounter rolls | DM | DM judgement — reveal if narratively neutral |
 
-The system is rule-agnostic: reference mechanics.md to determine which stat
-and modifier apply for any given roll in the current system.
+The system is rule-agnostic: reference the loaded sub-skill and mechanics.md
+to determine which stat and modifier apply for any given roll in the current system.
 
 ---
 
@@ -139,6 +173,10 @@ action, the DM and player align on what is happening mechanically. This
 supports two playstyles — the player chooses whichever feels natural to them,
 and can mix between them freely.
 
+**Before the first combat action of any encounter**, the DM must have the
+`combat_resolution` sub-skill loaded and its referenced mechanics.md sections
+in context. All combat resolution follows that sub-skill's Resolution Procedure.
+
 ---
 
 **Playstyle 1 — Mechanical declaration**
@@ -147,7 +185,8 @@ The player calls their action in game terms:
 
 > "I attack the guard with my shortsword. I rolled a 14 to hit and a 5 for damage."
 
-The DM verifies the declaration against the current situation and mechanics.md:
+The DM verifies the declaration against the current situation, the loaded
+combat_resolution sub-skill, and mechanics.md:
 - Does the action make sense given position and conditions?
 - Is the roll valid for the declared action?
 - Are there any modifiers the player may have missed (flanking, conditions,
@@ -167,8 +206,8 @@ The player describes what they want their character to do in fiction:
 
 > "I want to shove the guard into the brazier and knock him off balance."
 
-The DM translates the intent into mechanical terms and presents it for
-confirmation before resolving:
+The DM translates the intent into mechanical terms using the loaded sub-skill
+and presents it for confirmation before resolving:
 
 > "That reads as a Strength check to shove — contested by his Athletics.
 >  On a success he's knocked prone and takes 1d4 fire damage from the brazier.
@@ -193,3 +232,6 @@ The player confirms or adjusts. Once confirmed, the DM asks for the roll
 - Missed modifiers the player would reasonably know about should be flagged
   before resolving, not corrected after. If a modifier surfaces after the
   fact that the player could not have known, apply it with a brief note.
+- All mechanical rulings during combat must be traceable to the loaded
+  combat_resolution sub-skill or mechanics.md. If a situation arises that
+  neither covers, follow the Undefined Rules Protocol in dm_setup.md.

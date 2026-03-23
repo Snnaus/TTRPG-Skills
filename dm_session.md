@@ -23,6 +23,12 @@ The DM reads this context and performs a **state validation check**:
 After validation, produce a brief recap of where we left off, then ask:
 "Where would you like to begin?"
 
+**Context initialization:** At session start, the DM establishes the initial
+context tier loading per dm_context.md — all Tier 1 files for the current
+scene type must be read before the first narrative beat. This ensures the
+session begins with correct rules and state, not carried-over assumptions
+from a prior conversation.
+
 ---
 
 ## 1b. Session Resume (Interrupted Session)
@@ -79,15 +85,45 @@ After delivering the beat, the DM ends with either:
 - An implicit prompt (the situation is clear and the player knows they can act)
 - A direct question with lettered options (see dm_narration.md → Player Prompts)
 
-The DM does NOT:
+### Mechanical Resolution During Play — Hard Rule
+
+When a mechanical resolution is needed (combat, skill check, unique mechanic),
+the DM MUST load and follow the generated sub-skill file before resolving.
+Do not paraphrase or approximate the rules — open the file at
+`{Game Name} Rules/rulebook/sub-skills/[name].md` and execute its Resolution
+Procedure steps in order.
+
+See dm_resolution.md → Sub-Skill Loading for the full routing table and
+loading instructions. This is not optional — every mechanical resolution
+must be traceable to a sub-skill file and mechanics.md.
+
+If the sub-skill's Resolution Procedure references specific sections of
+mechanics.md, load those sections into context as well. The sub-skill's
+`references` block lists exactly which sections are needed.
+
+### What the DM does NOT do during active play
+
 - Chain multiple beats into a single response (e.g. entering a room AND
   triggering a conversation AND revealing a threat — pick one, let the
   player react, then continue)
 - Narrate player actions or decisions the player has not stated
 - Continue a scene past the point where the player has a meaningful choice
+- Resolve any mechanical action (roll, check, combat turn) without first
+  loading the relevant generated sub-skill file
+
+### Context management during active play
+
+The DM follows the refresh checkpoint schedule in dm_context.md throughout
+play. At scene transitions (entering a room, starting combat, ending combat,
+companion story beats), the DM re-reads the Tier 1 files for the upcoming
+scene type. At milestones, the DM writes context snapshots to mid_session_notes.
+If pressure signals fire (see dm_context.md → Pressure Signals), the DM
+performs an immediate refresh before continuing.
+
+This is silent background maintenance — it does not interrupt narration or
+pacing. See dm_context.md for the full protocol.
 
 See dm_narration.md → Pacing Rules for hard length limits and dungeon-specific guidance.
-
 For skill checks, dice rolling, and combat confirmation — see dm_resolution.md.
 For file maintenance during play — see dm_files.md.
 

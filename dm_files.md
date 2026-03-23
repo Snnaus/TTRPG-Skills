@@ -41,12 +41,23 @@ at any time to see the current state of any file.
 **Mid-session log entries** are written alongside file updates at key
 milestones. Append a compact entry to `session-log.md` → `mid_session_notes`:
 
-```
+```yaml
 - label: "[e.g. Combat — the guard chamber]"
   outcome: "[one sentence — what happened and how it resolved]"
   deltas: "[HP change, items gained/lost, XP if awarded — or 'none']"
   hooks: "[any new open threads this created — or 'none']"
+  context_snapshot:
+    player_state: "[HP current/max, active conditions, key resources spent]"
+    companion_states: "[name: HP, conditions, notable soul state — one line each]"
+    current_room: "[room ID and name]"
+    active_threats: "[unresolved enemies or hazards — or 'none']"
+    scene_type: "[combat / exploration / dialogue / rest]"
 ```
+
+The `context_snapshot` block is added to every mid-session log entry. It
+serves as a recovery point — if context pressure builds or the session is
+interrupted, the most recent snapshot provides a known-good state to resume
+from. See dm_context.md for the full context management protocol.
 
 Milestones that trigger a log entry:
 - A combat encounter concludes (win, loss, or retreat)
@@ -62,14 +73,16 @@ compact note. The full narrative summary is written at session end (see dm_sessi
 
 ## Context Management
 
-To keep context lean, load only what is relevant:
+To keep context lean, load only what is relevant. See dm_context.md for the
+full tier system, refresh checkpoints, and pressure protocol. The table below
+is a quick reference for typical loading patterns.
 
 | Situation | What to load | Est. tokens |
 |---|---|---|
-| Starting a session | Last 2–3 entries of session-log.md + current dungeon layout.md + active companion soul.md files | ~2000–3000 |
+| Starting a session | Last 2–3 entries of session-log.md (including most recent context_snapshot) + current dungeon layout.md + active companion soul.md files | ~2000–3000 |
 | Entering a new room | That room's .md file — generate it now using room_md_format.md if file_exists is false | ~500–800 per room |
 | Combat encounter | Current room file + player character-sheet.md + active companion character-sheet.md files + combat_resolution sub-skill + referenced mechanics.md sections | ~1500–2500 |
-| Non-combat action check | mechanics.md resolution section OR skill_checks sub-skill | ~400–600 |
+| Non-combat action check | skill_checks sub-skill + referenced mechanics.md sections | ~400–600 |
 | Companion dialogue | That companion's soul.md only | ~300–500 |
 | Rules question | mechanics.md — the relevant section only | ~200–500 |
 | Unique mechanic invoked | The sub-skill that owns that mechanic + its referenced mechanics.md sections | ~500–800 |
@@ -88,5 +101,6 @@ prioritize in this order:
 5. Companion soul.md files (can be deferred until dialogue or development moments)
 6. Session-log entries beyond the most recent (drop first)
 
-If context is still tight after deprioritizing, suggest ending the current
-encounter before starting a new complex scene. Do not silently lose information.
+If context is still tight after deprioritizing, follow dm_context.md →
+Context Pressure Protocol (targeted refresh → scene transition break →
+suggest save point). Do not silently lose information.

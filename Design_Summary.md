@@ -70,7 +70,7 @@ Relationship is tracked on two dimensions: a base level (distant → neutral →
 
 ## Setup Phase
 
-1. User provides rulebook (pasted text or described from memory)
+1. User provides rulebook (PDF upload, pasted text, or described from memory)
 2. Skill parses core mechanics into mechanics.md
 3. Generates system-specific sub-skills (minimum: combat_resolution, skill_checks)
 4. Walks through character creation
@@ -86,8 +86,10 @@ Relationship is tracked on two dimensions: a base level (distant → neutral →
 |---|---|---|
 | Can companions leave the party? | Yes — requires direct belief betrayal or 4+ sessions of ignored threads | dm_skill.md → Conflict and departure rules |
 | Spatial diagrams format | ASCII art for reliability; zone-based by default, grid optional for complex rooms | SKILL.md → Visual Aids |
-| Rulebook input format | Pasted text or player description (prototype); PDF parsing deferred to future version | SKILL.md → Setup Phase |
+| Rulebook input format | Three methods: PDF upload (via dm_pdf_ingest.md), pasted text, or player description from memory. PDF is recommended for completeness. | dm_setup.md → Setup Phase step 2, dm_pdf_ingest.md |
 | Co-op multiplayer | Not supported in prototype; listed as future work | SKILL.md → What This Skill Does NOT Handle |
+| Context window management | Three-tier system: always-active files, scene-active files, reference-only files. Refresh checkpoints at scene transitions. Context snapshots in mid-session logs. Pressure protocol escalates from targeted refresh → scene break → suggested save point. | dm_context.md |
+| Sub-skill enforcement during play | DM must load and follow generated sub-skill files before resolving any mechanical action. Hard rule — no resolution from general knowledge. | dm_resolution.md → Sub-Skill Loading, dm_session.md → Mechanical Resolution During Play |
 
 ---
 
@@ -95,5 +97,4 @@ Relationship is tracked on two dimensions: a base level (distant → neutral →
 
 - How should world-level state persist across multiple dungeons? (world-log.md is proposed but not yet templated)
 - Should the DM produce complete updated character files at session end instead of deltas?
-- Token budget targets per context type for context window management
 - Automated state management sub-skill design (currently manual)

@@ -1,6 +1,6 @@
 # session-log.md — Campaign Session Log
 # SKILL: dungeons/[location-name]/session-log.md
-# FORMAT VERSION: 1.0
+# FORMAT VERSION: 1.1
 # Persistent record of all sessions in this campaign.
 # Written by the DM: mid_session_notes are appended automatically during play at
 # key milestones; the full session summary is written at session end.
@@ -87,10 +87,25 @@ sessions:
       # Each entry is appended as events occur — do not edit previous entries.
       # The player does not need to manage this; the DM maintains it silently.
       # At session end, the DM uses these notes to write the full summary below.
+      #
+      # The context_snapshot block is written at every milestone. It captures
+      # enough state to reconstruct the scene if the session is interrupted
+      # or if context pressure requires recovery. See dm_context.md for the
+      # full context management protocol.
       - label: "[e.g. Combat — Guard Room R03]"
         outcome: "[One sentence — what happened and how it resolved]"
         deltas: "[HP change, items gained/lost, XP if awarded — or 'none']"
         hooks: "[Any new open threads this created — or 'none']"
+        context_snapshot:
+          player_state: "[HP current/max, active conditions, key resources spent —
+                         e.g. '14/30 HP, no conditions, 1 spell slot used']"
+          companion_states: "[One line per companion — e.g.
+                             'Mira: 18/22 HP, no conditions, quiet after village reference' |
+                             'none']"
+          current_room: "[Room ID and name — e.g. 'R03 — Guard Chamber']"
+          active_threats: "[Unresolved enemies or hazards — e.g.
+                           '1 guard remaining, wounded' | 'none']"
+          scene_type: "[combat / exploration / dialogue / rest]"
       # Continue appending entries below as milestones occur.
 
     summary: >
