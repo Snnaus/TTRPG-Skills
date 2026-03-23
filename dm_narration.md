@@ -139,16 +139,15 @@ time. The player types the letter to choose, or types freely if they pick Z
 
 ### When to use options
 
-Use lettered options when the situation has 2–4 distinct, meaningful choices:
-- Entering a room with multiple exits or immediate decisions
-- Combat turns where the player's available actions are bounded
-- Conversation beats where the player's response direction matters
-- Any moment where "What do you do?" would otherwise be fully open-ended
+**Use lettered options by default** at the end of every beat. The only
+exceptions are:
+- The player has just declared a specific action — resolve it and end with
+  a direct question ("What next?" or the natural follow-up) rather than
+  options that restate what they just did
+- The player is mid-sentence in a flowing conversation they are clearly
+  driving — let them finish, then offer options when the beat concludes
 
-Do NOT use options when:
-- The player has just declared a specific action (just resolve it)
-- The situation has only one obvious next step
-- The player is in the middle of a flowing conversation they are clearly driving
+When in doubt, offer options. A player can always ignore them and type freely.
 
 ### Writing good options
 
@@ -168,7 +167,16 @@ Do NOT use options when:
   Bad: "A. Fight."
 - Options should reflect what is actually possible given the room, rules, and
   companion state — do not offer options that would be immediately blocked.
-- Keep each option to one short line. This is a menu, not narration.
+- **One short line per option — action only.** No explanation of consequences,
+  no parenthetical context, no "which will..." clauses. The player decides
+  what to do; the DM narrates what happens after.
+
+  | Never write | Write instead |
+  |---|---|
+  | "A. Draw your sword and attack, which may alert the other guards." | "A. Draw your sword and attack." |
+  | "B. Try to sneak past (risky — you're not hidden)." | "B. Slip past while his back is turned." |
+  | "C. Talk to him, though he looks suspicious of strangers." | "C. Speak up and identify yourself." |
+
 - 2–4 options is the target. More than 4 usually means the situation needs
   to be narrowed, not listed out.
 
@@ -181,9 +189,11 @@ moving and the player in control.
 
 ### Length limits
 
-Every DM response should be **2–4 sentences of narration** plus an optional
-one-line prompt. This is a hard ceiling, not a target to aim for — shorter is
-usually better. The only exception is the first entry into a new room, which
+Every DM response should be **2–4 sentences of narration** followed by a
+lettered options prompt. This is a hard ceiling, not a target to aim for —
+shorter is usually better. The prompt is not optional — every beat ends with
+either lettered options or a direct question that hands control back to the
+player. The only exception is the first entry into a new room, which
 may stretch to 5 sentences to establish the space (matching the room file's
 entry_description).
 
