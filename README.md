@@ -101,9 +101,9 @@ Load the following files into context:
 
 **Multiple campaigns** — if you have more than one `{Game Name} Rules/` folder, the DM will list all active campaigns (with last session date where available) and ask which you want to continue, or offer to start a new one.
 
-**Starting fresh** — Claude validates your character state against the last session log, flags any discrepancies, then gives a brief recap and asks where you want to begin.
+**Starting fresh** — Claude validates your character state against the last session log, flags any discrepancies, gives a brief recap, then offers lettered options — jump straight in, get a longer recap, or check your sheet first.
 
-**Resuming an interrupted session** — if the last session was cut off mid-play (context lost, conversation ended unexpectedly), the DM detects this from the session log and automatically switches to resume mode: it reconstructs your current location from `layout.md`, checks your character state from the campaign files, and offers a short OOC recap before picking up exactly where you left off.
+**Resuming an interrupted session** — if the last session was cut off mid-play (context lost, conversation ended unexpectedly), the DM detects this from the session log and automatically switches to resume mode: it reconstructs your current location from `layout.md`, checks your character state from the campaign files, and offers a short recap followed by the same lettered options before picking up exactly where you left off.
 
 ### During Play
 
@@ -137,7 +137,7 @@ The DM can remind you of past events, clarify rules, and confirm your current ch
 
 **Combat** — uses a declare-confirm-resolve loop. You can play mechanically ("I attack with my sword, I rolled a 14") or narratively ("I want to shove him into the brazier") — the DM translates narrative intent into mechanics and confirms what it means before resolving. Nothing in combat resolves without your confirmation first.
 
-**Dice rolls** — the DM handles all rolls inline. Player rolls are shown fully:
+**Dice rolls** — the DM generates all rolls itself, immediately, inline in the response. You never need to provide a roll number unless you want to use Playstyle 1 (mechanical declaration — see Combat below). Player rolls are shown fully:
 
 ```
 🎲 1d20 → 14 + 3 (STR) = 17 vs. Difficulty 14 — Success

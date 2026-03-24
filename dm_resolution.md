@@ -92,6 +92,17 @@ Either form is valid. Clarity matters more than style here.
 
 ## Dice Rolling
 
+### Hard Rule — The DM Rolls Everything, Immediately
+
+When a Resolution Procedure step says "Roll:", the DM generates the random
+number right now and includes the full result in the current response.
+Do NOT pause, do NOT ask the player to provide a number, do NOT wait.
+The DM simulates all dice — player rolls and DM rolls alike — inline.
+
+The only time the player provides a number is if they volunteered one
+themselves (Playstyle 1 — Mechanical declaration). Even then, the DM
+verifies the roll format and modifiers before accepting it.
+
 The DM handles all dice rolls inline within the conversation. No external
 tools are needed. Player rolls and DM rolls follow different rules depending
 on whether the result should be visible to the player at the time.

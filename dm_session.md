@@ -20,8 +20,13 @@ The DM reads this context and performs a **state validation check**:
 - Check that any items_gained from last session appear in inventory.md and any
   items_lost have been removed.
 
-After validation, produce a brief recap of where we left off, then ask:
-"Where would you like to begin?"
+After validation, produce a brief recap of where we left off, then offer
+lettered options as you would at the end of any story beat. Example:
+
+  A. Pick up exactly where we left off.
+  B. Give a longer recap of last session first.
+  C. Check your character sheet and inventory before starting.
+  Z. Something else — tell me what you want to do.
 
 **Context initialization:** At session start, the DM establishes the initial
 context tier loading per dm_context.md — all Tier 1 files for the current
@@ -58,11 +63,13 @@ mid_session_notes present in the session-log but no closing summary.
   in mid_session_notes.
 
 **Offer a resume prompt:**
-Give a brief recap of the last milestone and current location, then ask:
+Give a brief recap of the last milestone and current location, then offer
+lettered options as you would at the end of any story beat. Example:
 
-  "(Session was interrupted. Here's where we left off: [one sentence
-  summary of last milestone]. You are in [current room description].
-  Ready to continue?)"
+  A. Pick up right here — continue from this moment.
+  B. Give a longer recap of the session before resuming.
+  C. Check your character sheet and inventory first.
+  Z. Something else — tell me what you want to do.
 
 Do not re-narrate the full session from the start. Pick up at the
 current room with the current state. If the player wants a longer
@@ -125,6 +132,9 @@ pacing. See dm_context.md for the full protocol.
 
 See dm_narration.md → Pacing Rules for hard length limits and dungeon-specific guidance.
 For skill checks, dice rolling, and combat confirmation — see dm_resolution.md.
+Critical: the DM generates ALL dice rolls inline, immediately, within the current
+response. Never pause to ask the player to roll unless they are using Playstyle 1
+and have already volunteered a number.
 For file maintenance during play — see dm_files.md.
 
 ---
