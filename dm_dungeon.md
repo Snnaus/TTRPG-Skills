@@ -55,6 +55,83 @@ file's `alterations` log and update the room's status to `altered` in layout.md.
 
 ---
 
+## Faction Alert States
+
+Every dungeon with a living faction (not purely environmental) runs on an
+alert state that tracks what the faction knows. This is distinct from the
+Tension Track in dm_tension.md — alert state is faction-awareness, tension
+is DM pacing. They interact but are not the same thing.
+
+**Alert levels:**
+
+| Level | What the faction knows | Behavior |
+|---|---|---|
+| Unaware | Nothing. Routine. | Enemies at default positions, patrol routes normal |
+| Suspicious | Something is off — a sound, a missing guard, a door that was closed | Patrols increase; one or two enemies sent to investigate |
+| Alarmed | A confirmed intrusion. They know someone is here. | Patrols converge; non-combat enemies fall back to defensible positions; reinforcements staged |
+| Mobilized | They have location or description of the player. | Active hunting. Enemies move toward the player rather than waiting. Bosses or leaders become active. |
+
+**Alert transitions:**
+
+| Event | Transition |
+|---|---|
+| Player heard (loud action, failed stealth) | Unaware → Suspicious |
+| Player spotted (any enemy sees them, even briefly) | Suspicious → Alarmed |
+| Combat occurs | → Alarmed immediately, regardless of prior level |
+| An enemy escapes a combat alive | → Mobilized |
+| A patrol finds a cleared room or a body | +1 level |
+| Player eliminates all witnesses silently | Level holds or drops by 1 at DM discretion |
+
+**When generating rooms at Alarmed or Mobilized state:**
+Enemies in unvisited rooms are no longer in their default positions. They are:
+- Facing the door the player is likely to come from
+- Clustered rather than spread
+- Possibly reinforced by 1 additional enemy from an adjacent cleared area
+  (if that enemy was not defeated — mark them as relocated in the room file)
+
+This is applied silently. The player discovers it when they enter. Do not
+announce that alert state changed or that rooms have been reconfigured.
+
+---
+
+## Conflict Pacing in Layout Generation
+
+When generating a dungeon's layout.md, the DM must structure the room manifest
+to guarantee conflict escalation. The following rules apply at generation time:
+
+**Required conflict beats per dungeon:**
+
+| Dungeon size | Minimum forced encounters | Minimum meaningful discoveries |
+|---|---|---|
+| Small (5–7 rooms) | 2 | 2 |
+| Medium (8–12 rooms) | 3 | 3 |
+| Large (13+ rooms) | 4 | 4 |
+
+A "forced encounter" is a room or event that cannot be bypassed without a roll
+or a decision — it is designed into the layout, not left to chance. At generation
+time, mark at least this many rooms with `type: encounter` and ensure at least
+one of them is in the first half of the dungeon.
+
+**The first encounter must be within reach by room 3.**
+If the entry point is R01, there must be a room of type `encounter` reachable
+within two moves. Do not generate dungeons where the first three rooms are all
+corridors, lore, or rest areas. If the layout calls for that, add a patrol
+or wandering enemy to one of those rooms instead.
+
+**Boss rooms must be preceded by at least one encounter room.**
+The player should never walk from a cleared corridor directly into the boss.
+There is always a buffer — another encounter, a rest/lore room with a complication,
+or a puzzle with teeth (a wrong answer triggers a threat).
+
+**Add at least one "chase point" to medium and large dungeons.**
+A chase point is a location where the layout funnels the player and creates
+urgency — a collapsing bridge, a room that floods, a patrol route that the
+player must cross. Mark these in layout.md `pacing_notes`. Generate the
+room file with a time-pressure mechanic: the player has a limited number of
+actions before the situation forces a decision.
+
+---
+
 ## Multi-Location Campaigns
 
 When the player completes a dungeon or moves to a new location:

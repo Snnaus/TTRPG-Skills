@@ -20,19 +20,20 @@ The DM reads this context and performs a **state validation check**:
 - Check that any items_gained from last session appear in inventory.md and any
   items_lost have been removed.
 
-After validation, produce a brief recap of where we left off, then offer
-lettered options as you would at the end of any story beat. Example:
+**Tension state restoration:**
+Read `dungeon_state` from the most recent session-log entry and restore:
+- `tension_track` → set the Tension Track to this level before the first response
+- `faction_alert` → restore the faction's alert state; apply any behavioral
+  changes to unvisited rooms that this alert level implies (see dm_dungeon.md →
+  Faction Alert States)
+- `passive_beat_count` → restore the counter; the session continues mid-count,
+  not from zero
 
-  A. Pick up exactly where we left off.
-  B. Give a longer recap of last session first.
-  C. Check your character sheet and inventory before starting.
-  Z. Something else — tell me what you want to do.
+If `dungeon_state` is absent, infer from session log context per the rules in
+dm_tension.md → Session Persistence.
 
-**Context initialization:** At session start, the DM establishes the initial
-context tier loading per dm_context.md — all Tier 1 files for the current
-scene type must be read before the first narrative beat. This ensures the
-session begins with correct rules and state, not carried-over assumptions
-from a prior conversation.
+After validation, produce a brief recap of where we left off, then ask:
+"Where would you like to begin?"
 
 ---
 
@@ -56,6 +57,21 @@ mid_session_notes present in the session-log but no closing summary.
 3. Read the character-sheet.md and inventory.md files as authoritative
    current state (they are maintained continuously during play).
 
+**Tension state reconstruction:**
+Read `dungeon_state` from the Running Tracker of the most recent session-log entry.
+Then scan mid_session_notes deltas in order, applying any tension track or alert
+state changes noted there on top of the base dungeon_state values. The last
+delta entry wins. This reconstructs the exact tension state at the moment the
+session was interrupted.
+
+Example reconstruction:
+```
+dungeon_state (session start): tension_track: 2, faction_alert: unaware, passive_beat_count: 1
+mid_session_notes delta 1: "Tension Track: 2 → 3. Faction alert: unaware → suspicious."
+mid_session_notes delta 2: "Passive beat counter reset (threat signal delivered)."
+→ Reconstructed state: tension_track: 3, faction_alert: suspicious, passive_beat_count: 0
+```
+
 **Run a state validation check** (same as Session Start):
 - Compare character-sheet.md HP and resources against the last
   mid_session_notes delta. Flag any discrepancy before resuming.
@@ -63,13 +79,11 @@ mid_session_notes present in the session-log but no closing summary.
   in mid_session_notes.
 
 **Offer a resume prompt:**
-Give a brief recap of the last milestone and current location, then offer
-lettered options as you would at the end of any story beat. Example:
+Give a brief recap of the last milestone and current location, then ask:
 
-  A. Pick up right here — continue from this moment.
-  B. Give a longer recap of the session before resuming.
-  C. Check your character sheet and inventory first.
-  Z. Something else — tell me what you want to do.
+  "(Session was interrupted. Here's where we left off: [one sentence
+  summary of last milestone]. You are in [current room description].
+  Ready to continue?)"
 
 Do not re-narrate the full session from the start. Pick up at the
 current room with the current state. If the player wants a longer
@@ -92,50 +106,18 @@ After delivering the beat, the DM ends with either:
 - An implicit prompt (the situation is clear and the player knows they can act)
 - A direct question with lettered options (see dm_narration.md → Player Prompts)
 
-### Mechanical Resolution During Play — Hard Rule
-
-When a mechanical resolution is needed (combat, skill check, unique mechanic),
-the DM MUST load and follow the generated sub-skill file before resolving.
-Do not paraphrase or approximate the rules — open the file at
-`{Game Name} Rules/rulebook/sub-skills/[name].md` and execute its Resolution
-Procedure steps in order.
-
-See dm_resolution.md → Sub-Skill Loading for the full routing table and
-loading instructions. This is not optional — every mechanical resolution
-must be traceable to a sub-skill file and mechanics.md.
-
-If the sub-skill's Resolution Procedure references specific sections of
-mechanics.md, load those sections into context as well. The sub-skill's
-`references` block lists exactly which sections are needed.
-
-### What the DM does NOT do during active play
-
+The DM does NOT:
 - Chain multiple beats into a single response (e.g. entering a room AND
   triggering a conversation AND revealing a threat — pick one, let the
   player react, then continue)
 - Narrate player actions or decisions the player has not stated
 - Continue a scene past the point where the player has a meaningful choice
-- Resolve any mechanical action (roll, check, combat turn) without first
-  loading the relevant generated sub-skill file
-
-### Context management during active play
-
-The DM follows the refresh checkpoint schedule in dm_context.md throughout
-play. At scene transitions (entering a room, starting combat, ending combat,
-companion story beats), the DM re-reads the Tier 1 files for the upcoming
-scene type. At milestones, the DM writes context snapshots to mid_session_notes.
-If pressure signals fire (see dm_context.md → Pressure Signals), the DM
-performs an immediate refresh before continuing.
-
-This is silent background maintenance — it does not interrupt narration or
-pacing. See dm_context.md for the full protocol.
 
 See dm_narration.md → Pacing Rules for hard length limits and dungeon-specific guidance.
+
 For skill checks, dice rolling, and combat confirmation — see dm_resolution.md.
-Critical: the DM generates ALL dice rolls inline, immediately, within the current
-response. Never pause to ask the player to roll unless they are using Playstyle 1
-and have already volunteered a number.
 For file maintenance during play — see dm_files.md.
+For tension escalation and forced encounters — see dm_tension.md.
 
 ---
 
@@ -176,6 +158,20 @@ Update the Running Tracker section of session-log.md:
 - Open hooks (add new, remove resolved)
 - Significant NPCs (add, update status, or remove)
 - World-state changes
+- **dungeon_state** — write the final tension state block:
+
+```yaml
+dungeon_state:
+  tension_track: [current level]
+  faction_alert: [current alert level]
+  passive_beat_count: [current count]
+  notes: >
+    [One sentence summary of what drove the current state, if notable. Omit if nothing significant.]
+```
+
+This block is the authoritative source for the next session's tension restoration.
+Do not omit it even if nothing changed — a confirmed baseline is more useful than
+an absent one.
 
 **World log:**
 If any events this session have consequences beyond the current dungeon

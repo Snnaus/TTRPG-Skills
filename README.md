@@ -252,7 +252,7 @@ If context pressure becomes severe, the DM may suggest a natural save point — 
 | `dm_context.md` | Always (background) | Context window management, refresh checkpoints, snapshot format, pressure protocol |
 | `dm_setup.md` | First time setup or rules questions | Campaign setup, character creation, undefined rules |
 | `dm_pdf_ingest.md` | Player uploads a PDF rulebook during setup | PDF extraction, content diagnosis, targeted page reading |
-| `dm_dungeon.md` | Room generation or location transitions | Dungeon generation, multi-location campaigns |
+| `dm_dungeon.md` | Room generation or location transitions | Dungeon generation, conflict pacing, faction alert states, multi-location campaigns |
 | `dm_companions.md` | Any session with companions | Companion types, agency, escalation path, surfacing rules, OOC companion questions, departure rules |
 | `dm_skill.md` | Session end or companion story beats | soul.md update rules: relationship changes, milestones, engagement tracking |
 
