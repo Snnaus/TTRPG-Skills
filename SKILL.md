@@ -136,45 +136,19 @@ or advancement.
 All DM behavior is defined in these files. Load the relevant sub-skill when
 the situation requires it.
 
-### System-Agnostic Sub-Skills (dm_*.md)
-
-These files ship with the skill and apply to every game system.
-
 | Sub-skill | When to load | What it covers |
 |---|---|---|
 | `dm_session.md` | Every session | Session start, active play, session end |
+| `dm_tension.md` | Every session (alongside dm_session.md) | Tension Track, passive beat counter, forced encounters, faction alert states |
 | `dm_resolution.md` | Any skill check or combat | Skill checks, dice rolling, combat confirmation |
 | `dm_files.md` | Always (background) | File maintenance, mid-session logging, context management |
 | `dm_setup.md` | No mechanics.md exists, or rules questions | Campaign setup, character creation, undefined rules |
-| `dm_pdf_ingest.md` | Player uploads a PDF rulebook during setup | PDF extraction, content diagnosis, targeted page reading |
-| `dm_dungeon.md` | Room generation or location transitions | Dungeon generation, multi-location campaigns |
-| `dm_companions.md` | Any session with companions | Companion types, agency, character development |
-| `dm_skill.md` | Session end or companion story beats | soul.md updates, surfacing rules, departure rules |
-| `dm_narration.md` | Always (background) | Tone, voice, pacing, OOC communication, player prompts |
-| `dm_context.md` | Always (background) | Context window management, refresh checkpoints, snapshot format, pressure protocol |
-
-### Generated Sub-Skills (per game system)
-
-These files are created during setup and live at
-`{Game Name} Rules/rulebook/sub-skills/`. They contain the system-specific
-resolution procedures the DM follows during play. **The DM must load and
-follow the relevant generated sub-skill before resolving any mechanical
-action.** See dm_resolution.md → Sub-Skill Loading for the full routing table.
-
-| Sub-skill | When to load | What it covers |
-|---|---|---|
-| `combat_resolution.md` | Any combat action — attack, ability use, damage, conditions, defeat | The full combat turn loop for this system |
-| `skill_checks.md` | Any non-combat ability test, saving throw, or opposed check | Out-of-combat resolution for this system |
-| Additional sub-skills | When their specific mechanic is invoked | System-unique mechanics (spells, sanity, stress, etc.) |
-
-The full list of generated sub-skills for the active game is in
-`{Game Name} Rules/rulebook/mechanics.md` → `sub_skills` section.
-
-**Hard rule:** During active play, the DM never resolves a mechanical action
-(roll, check, combat turn) without first loading the generated sub-skill that
-owns that domain. General knowledge of a game system is not a substitute for
-reading the file — the file is the canonical reference. See dm_session.md →
-Active Play → Mechanical Resolution During Play for the enforcement rule.
+| `dm_dungeon.md` | Room generation or location transitions | Dungeon generation, conflict pacing, faction alert states, multi-location campaigns |
+| `dm_companions.md` | Any session with companions | Companion types, agency, escalation path, surfacing rules, OOC companion questions, departure rules |
+| `dm_skill.md` | Session end or companion story beats | soul.md update rules: relationship changes, milestones, engagement tracking |
+| `dm_narration.md` | Always (background) | Tone, voice, pacing, tension ratchet, player prompts |
+| `dm_ooc.md` | Always (background) | OOC communication protocol, what the DM can and cannot reveal |
+| `dm_visuals.md` | On request or combat start | ASCII combat diagrams, character sheet summaries, dungeon maps |
 
 ---
 
@@ -182,3 +156,4 @@ Active Play → Mechanical Resolution During Play for the enforcement rule.
 
 These are delegated to sub-skills or future work:
 - Multiplayer session coordination
+- Rulebook PDF parsing — player pastes or describes key rules instead

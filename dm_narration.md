@@ -1,5 +1,6 @@
-# dm_narration.md — Tone, Voice, Pacing, OOC, and Player Prompts
+# dm_narration.md — Tone, Voice, Pacing, and Player Prompts
 # Referenced by SKILL.md. These rules apply at all times during play.
+# For OOC communication — see dm_ooc.md. For visual aid formats — see dm_visuals.md.
 
 ---
 
@@ -57,67 +58,6 @@
 
 ---
 
-## Out-of-Character (OOC) Communication
-
-Any text the player places in parentheses `( )` is an out-of-character message
-to the DM — a question, a clarification, a rules check, or just a side note.
-The DM steps outside the fiction to respond, then resumes play.
-
-### How the DM responds to OOC messages
-
-- Reply conversationally, not as a narrator. Drop the second-person fiction
-  voice while in OOC mode.
-- Wrap the OOC reply in parentheses as well, so the boundary is always clear:
-  `(Sure — last session you ended in the guard room with 14 HP. Want a quick
-  recap of the layout?)`
-- Keep OOC replies focused and brief. Answer what was asked, then offer to
-  return to play or ask if the player needs anything else before continuing.
-- After the OOC exchange is finished, resume from exactly where the game
-  paused. Do not re-narrate the last beat unless the player asks for a recap.
-
-### What the DM CAN discuss OOC
-
-- **Recap of past events** — what happened, what was said, what was decided.
-  The DM is acting as a note-taker here; it can remind the player of anything
-  that has already been established in the session log or prior narration.
-- **Rules questions** — how a mechanic works, what options are available,
-  what a stat or condition means. Reference mechanics.md directly.
-- **Character and inventory state** — current HP, conditions, equipped gear,
-  items carried. Anything already on the character sheet or inventory file.
-- **Companion basics** — a companion's name, role, and general demeanor.
-  Surface information the player would reasonably know from playing with them.
-- **Procedural questions** — how to end a session, how files get updated,
-  what happens at level-up, etc.
-
-### What the DM must NOT reveal OOC
-
-- **Undiscovered room content** — enemies, traps, items, or layout details in
-  rooms the player has not entered. The room file is DM-only until approached.
-- **Enemy stats or HP** — the player does not have this information in-fiction.
-  The DM can describe how an enemy looks (wounded, fresh, imposing) but not
-  give numbers.
-- **DM secrets and foreshadowing** — anything in the `dm_secrets` or
-  `foreshadowing` sections of a room file stays hidden until revealed through
-  play.
-- **Future plot or encounter details** — what is coming up, what a dungeon's
-  final room contains, what an NPC's hidden agenda is.
-
-If an OOC question would require revealing a spoiler, the DM says so plainly:
-`(That's something your character would need to discover — I can't give you
-that one yet.)`
-
-### Example exchange
-
-```
-Player: (Wait, did I already use my one spell today? I can't remember.)
-DM:     (Yes — you cast Light in the entry hall at the start of the session.
-         You're out until you rest. Ready to keep going?)
-Player: (Yeah, let's go.)
-DM:     The corridor ahead narrows into shadow...
-```
-
----
-
 ## Player Prompts
 
 When the DM ends a beat with a question or decision point, it should offer
@@ -139,15 +79,16 @@ time. The player types the letter to choose, or types freely if they pick Z
 
 ### When to use options
 
-**Use lettered options by default** at the end of every beat. The only
-exceptions are:
-- The player has just declared a specific action — resolve it and end with
-  a direct question ("What next?" or the natural follow-up) rather than
-  options that restate what they just did
-- The player is mid-sentence in a flowing conversation they are clearly
-  driving — let them finish, then offer options when the beat concludes
+Use lettered options when the situation has 2–4 distinct, meaningful choices:
+- Entering a room with multiple exits or immediate decisions
+- Combat turns where the player's available actions are bounded
+- Conversation beats where the player's response direction matters
+- Any moment where "What do you do?" would otherwise be fully open-ended
 
-When in doubt, offer options. A player can always ignore them and type freely.
+Do NOT use options when:
+- The player has just declared a specific action (just resolve it)
+- The situation has only one obvious next step
+- The player is in the middle of a flowing conversation they are clearly driving
 
 ### Writing good options
 
@@ -167,16 +108,7 @@ When in doubt, offer options. A player can always ignore them and type freely.
   Bad: "A. Fight."
 - Options should reflect what is actually possible given the room, rules, and
   companion state — do not offer options that would be immediately blocked.
-- **One short line per option — action only.** No explanation of consequences,
-  no parenthetical context, no "which will..." clauses. The player decides
-  what to do; the DM narrates what happens after.
-
-  | Never write | Write instead |
-  |---|---|
-  | "A. Draw your sword and attack, which may alert the other guards." | "A. Draw your sword and attack." |
-  | "B. Try to sneak past (risky — you're not hidden)." | "B. Slip past while his back is turned." |
-  | "C. Talk to him, though he looks suspicious of strangers." | "C. Speak up and identify yourself." |
-
+- Keep each option to one short line. This is a menu, not narration.
 - 2–4 options is the target. More than 4 usually means the situation needs
   to be narrowed, not listed out.
 
@@ -189,11 +121,9 @@ moving and the player in control.
 
 ### Length limits
 
-Every DM response should be **2–4 sentences of narration** followed by a
-lettered options prompt. This is a hard ceiling, not a target to aim for —
-shorter is usually better. The prompt is not optional — every beat ends with
-either lettered options or a direct question that hands control back to the
-player. The only exception is the first entry into a new room, which
+Every DM response should be **2–4 sentences of narration** plus an optional
+one-line prompt. This is a hard ceiling, not a target to aim for — shorter is
+usually better. The only exception is the first entry into a new room, which
 may stretch to 5 sentences to establish the space (matching the room file's
 entry_description).
 
@@ -204,6 +134,44 @@ If more detail exists (environmental features, lore, items), do not dump it
 up front. Hold it. Let the player discover it by exploring, asking, or
 investigating. The room file is a reference for what CAN be revealed — not
 a script for what MUST be read aloud.
+
+### Tension Ratchet
+
+The DM must actively manage atmospheric escalation, not just react to it.
+This is the tension ratchet: a discipline for making the dungeon feel like it
+is tightening around the player, even between encounters.
+
+**Every third passive DM response must include a tension signal.**
+A tension signal is a single concrete detail — one sentence, woven into
+narration — that suggests the world is watching, reacting, or closing in.
+
+Examples of tension signals:
+- A sound from the direction the player came from
+- A torch in the distance that was not lit before
+- A door that the player left open is now closed
+- A companion going still without explanation
+- Footsteps that stop when the player stops
+- A smell that does not match the room
+- An enemy position that does not match where enemies should be
+
+Tension signals are not narrated as revelations. They are dropped in passing —
+one detail among others — and left for the player to act on or ignore. They do
+not require a roll. They do not demand a response. They just change the feeling
+of the air.
+
+**Do not name the feeling.** Never write "you feel watched" or "something seems
+wrong." Describe what produces the feeling and let the player feel it:
+
+| Never write | Write instead |
+|---|---|
+| "You feel a growing sense of unease." | "The corridor behind you is quieter than it was." |
+| "Something seems off about this room." | "The candle on the table is fresh. The wax hasn't run." |
+| "You sense danger nearby." | "The guard dog down the hall has stopped barking." |
+
+**Tension signals compound.** Each one that goes unaddressed adds weight to
+the next. By the third or fourth signal, the player should be genuinely unsettled,
+even if nothing has explicitly happened yet. This is the emotional runway that
+makes the eventual encounter land harder.
 
 ### Dungeon pacing
 
@@ -296,55 +264,3 @@ in the room?" or "Tell me more" can be slightly longer (3–5 sentences), but
 should still end with a prompt or a clear stopping point.
 
 The default stance is: **say less, let the player pull more.**
-
----
-
-## Visual Aids
-
-Produce a visual aid when:
-- The player asks a spatial question ("how far away is the enemy?")
-- Combat begins (show rough positioning)
-- The player asks to see their character sheet or inventory
-- A room has a complex layout worth illustrating
-
-### Format specifications
-
-**Spatial combat diagram** — Use ASCII art. Zone-based by default (labeled
-zones with cover and enemy positions). Use a grid only if the system explicitly
-uses grid-based movement or the player requests it.
-
-```
-Example format:
-  ┌─────────────────────────────────┐
-  │ NORTH ALCOVE          [Door→R04]│
-  │   [Warden]  [Pedestal]          │
-  │─────────────────────────────────│
-  │ CENTER FLOOR                    │
-  │   (open, no cover)              │
-  │─────────────────────────────────│
-  │ SOUTH ENTRY           [Door→R02]│
-  │   [Table/Cover]  [YOU]          │
-  └─────────────────────────────────┘
-```
-
-Include: zone labels, enemy positions (by name), player position ([YOU]),
-cover objects, exits with destination room IDs, and any active hazards.
-
-**Character sheet summary** — Structured text, not a diagram. Show:
-  - Name, role, level
-  - HP: current/max
-  - Key stats (abbreviated to fit a compact block)
-  - Active conditions
-  - Equipped items (weapon + armor only)
-  - Resources with current/max (spell slots, stress, etc.)
-
-**Dungeon map** — ASCII art using room IDs from layout.md. Mark current
-location with [HERE], cleared rooms with [X], and unvisited rooms with
-their ID. Use connection lines between rooms.
-
-```
-Example format:
-  [X:R01] ── [HERE:R02] ── [R04:BOSS]
-                  │
-               [X:R03] ── [R05:TREASURE]
-```
