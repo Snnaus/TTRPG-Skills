@@ -49,7 +49,7 @@ folder. Multiple games can run concurrently — they never share files.
 │   │   └── inventory.md
 │   └── companions/
 │       └── [companion-name]/
-│           ├── soul.md             ← Personality, goals, beliefs, current state
+│           ├── soul.md
 │           ├── character-sheet.md
 │           └── inventory.md
 │
@@ -109,7 +109,7 @@ Load the following files into context:
 
 The DM operates in a **beat-and-prompt** pattern: one narrative beat per response, then the player acts. Most of the time responses are tight — 2–4 sentences of narration plus a prompt. For genuinely dramatic moments (boss defeats, near-death, irreversible choices, long-awaited revelations) the DM expands into a fuller cinematic beat before handing control back.
 
-**Player prompts** — at decision points, the DM offers lettered shorthand options:
+**Player prompts** — every beat ends with lettered options. After narrating a room entry, combat turn, companion moment, or any other beat, the DM always offers:
 
 ```
 A. Draw your sword and step into the room.
@@ -118,7 +118,7 @@ C. Back away and find another route.
 Z. Something else — tell me what you do.
 ```
 
-Z is always the open-ended option. Type a letter to choose, or type freely for anything not listed.
+Z is always the open-ended option. Type a letter to choose, or type freely for anything not listed. The only time options are omitted is when the player just declared a specific action and the DM is mid-resolution.
 
 **Narration** — the DM always refers to your character as "you" in story mode. Technical information (room IDs, stat values, file names, roll numbers) never appears in narration — rooms are described by what they are, not their tracking ID. That information is only surfaced OOC when you ask for it.
 
@@ -243,18 +243,16 @@ If context pressure becomes severe, the DM may suggest a natural save point — 
 |---|---|---|
 | `SKILL.md` | Every session | Parent router — file structure, template index, sub-skill index |
 | `dm_session.md` | Every session | Session start, active play, session end |
-| `dm_tension.md` | Every session (alongside dm_session.md) | Tension Track, passive beat counter, forced encounters, faction alert states |
-| `dm_narration.md` | Always (background) | Tone, voice, pacing, tension ratchet, player prompts |
-| `dm_ooc.md` | Always (background) | OOC communication protocol, what the DM can and cannot reveal |
-| `dm_visuals.md` | On request or combat start | ASCII combat diagrams, character sheet summaries, dungeon maps |
+| `dm_narration.md` | Always (background) | Tone, voice, pacing, player prompts |
+| `dm_ooc.md` | Player sends OOC message or visual aid needed | OOC communication rules, visual aid formats (combat diagrams, maps, character sheet summaries) |
 | `dm_resolution.md` | Any skill check or combat | Skill checks, dice rolling, combat confirmation |
 | `dm_files.md` | Always (background) | File maintenance, mid-session logging, context management |
 | `dm_context.md` | Always (background) | Context window management, refresh checkpoints, snapshot format, pressure protocol |
-| `dm_setup.md` | First time setup or rules questions | Campaign setup, character creation, undefined rules |
+| `dm_setup.md` | No mechanics.md exists, rules questions, or mid-campaign companion creation | Campaign setup, character creation, undefined rules |
 | `dm_pdf_ingest.md` | Player uploads a PDF rulebook during setup | PDF extraction, content diagnosis, targeted page reading |
-| `dm_dungeon.md` | Room generation or location transitions | Dungeon generation, conflict pacing, faction alert states, multi-location campaigns |
-| `dm_companions.md` | Any session with companions | Companion types, agency, escalation path, surfacing rules, OOC companion questions, departure rules |
-| `dm_skill.md` | Session end or companion story beats | soul.md update rules: relationship changes, milestones, engagement tracking |
+| `dm_dungeon.md` | Room generation or location transitions | Dungeon generation, multi-location campaigns |
+| `dm_companions.md` | Any session with companions | Companion types, agency, behavior rules |
+| `dm_skill.md` | Session end or companion story beats | soul.md updates, surfacing rules, departure rules |
 
 **Format templates** — used when generating campaign files:
 

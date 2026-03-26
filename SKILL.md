@@ -28,6 +28,11 @@ This skill acts as a router. It does not handle game mechanics directly — it
 delegates to sub-skills. Multiple games and campaigns can run concurrently —
 each gets its own `{Game Name} Rules/` folder at the root level.
 
+All sub-skills are kept under 200 lines. If a sub-skill grows beyond that,
+split it into focused files with explicit routing between them. Generated
+sub-skills (in rulebook/sub-skills/) follow the same constraint — see
+generated_skill_format.md → Skill Constraints.
+
 ```
 /
 ├── SKILL.md                        ← you are here (system-agnostic)
@@ -51,7 +56,7 @@ each gets its own `{Game Name} Rules/` folder at the root level.
 │   │   └── inventory.md
 │   └── companions/
 │       └── [companion-name]/
-│           ├── soul.md             ← personality, goals, beliefs, current state
+│           ├── soul.md
 │           ├── character-sheet.md
 │           └── inventory.md
 │
@@ -112,7 +117,8 @@ Step 2 — Check campaign state for the selected game.
 
     NO
       → Rulebook exists but no campaign yet.
-        Run dm_setup.md steps 6–9 (scenario, dungeon, session-log, world-log).
+        Run dm_setup.md steps 6–10 (companions, scenario, dungeon,
+        session-log, world-log).
 
     YES
       → Does the most recent session-log entry have mid_session_notes
@@ -126,8 +132,7 @@ Step 2 — Check campaign state for the selected game.
 ```
 
 Do not skip or abbreviate setup. A campaign without mechanics.md cannot
-be run correctly — there are no rules to reference for checks, combat,
-or advancement.
+be run correctly.
 
 ---
 
@@ -139,16 +144,36 @@ the situation requires it.
 | Sub-skill | When to load | What it covers |
 |---|---|---|
 | `dm_session.md` | Every session | Session start, active play, session end |
-| `dm_tension.md` | Every session (alongside dm_session.md) | Tension Track, passive beat counter, forced encounters, faction alert states |
 | `dm_resolution.md` | Any skill check or combat | Skill checks, dice rolling, combat confirmation |
 | `dm_files.md` | Always (background) | File maintenance, mid-session logging, context management |
-| `dm_setup.md` | No mechanics.md exists, or rules questions | Campaign setup, character creation, undefined rules |
-| `dm_dungeon.md` | Room generation or location transitions | Dungeon generation, conflict pacing, faction alert states, multi-location campaigns |
-| `dm_companions.md` | Any session with companions | Companion types, agency, escalation path, surfacing rules, OOC companion questions, departure rules |
-| `dm_skill.md` | Session end or companion story beats | soul.md update rules: relationship changes, milestones, engagement tracking |
-| `dm_narration.md` | Always (background) | Tone, voice, pacing, tension ratchet, player prompts |
-| `dm_ooc.md` | Always (background) | OOC communication protocol, what the DM can and cannot reveal |
-| `dm_visuals.md` | On request or combat start | ASCII combat diagrams, character sheet summaries, dungeon maps |
+| `dm_setup.md` | No mechanics.md exists, rules questions, or mid-campaign companion creation | Campaign setup, character creation, undefined rules |
+| `dm_dungeon.md` | Room generation or location transitions | Dungeon generation, multi-location campaigns |
+| `dm_companions.md` | Any session with companions | Companion types, agency, behavior rules |
+| `dm_skill.md` | Session end or companion story beats | soul.md updates, surfacing rules, departure rules |
+| `dm_narration.md` | Always (background) | Tone, voice, pacing, player prompts |
+| `dm_ooc.md` | Player sends OOC message or visual aid needed | OOC communication rules, visual aid formats |
+
+### Routing During Active Play
+
+dm_session.md drives the main play loop. When specific situations arise
+during active play, dm_session.md hands off to these sub-skills:
+
+| Trigger during play | Load |
+|---|---|
+| Player declares an action requiring a skill check | dm_resolution.md + the skill_checks sub-skill |
+| Combat begins | dm_resolution.md + the combat_resolution sub-skill |
+| A rule is invoked that is not defined in mechanics.md | dm_setup.md → Undefined Rules Protocol |
+| Player moves toward an unvisited room | dm_dungeon.md + dm_files.md |
+| Player completes a dungeon or moves to a new location | dm_dungeon.md → Multi-Location Campaigns |
+| Companion acts in combat or outside combat | dm_companions.md → Companion Agency |
+| Companion story beat surfaces | dm_skill.md → Surfacing Rules |
+| Player wants to recruit a new companion mid-campaign | dm_setup.md → Mid-Campaign Companion Creation |
+| Player sends an OOC message in parentheses | dm_ooc.md |
+| Spatial question or combat positioning needed | dm_ooc.md → Visual Aids |
+| Session ends | dm_session.md → Session End + dm_skill.md (soul.md updates) |
+
+dm_narration.md and dm_files.md are always active in the background —
+they do not need an explicit trigger.
 
 ---
 

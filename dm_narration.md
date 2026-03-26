@@ -1,6 +1,6 @@
 # dm_narration.md — Tone, Voice, Pacing, and Player Prompts
 # Referenced by SKILL.md. These rules apply at all times during play.
-# For OOC communication — see dm_ooc.md. For visual aid formats — see dm_visuals.md.
+# For OOC communication and visual aids, see dm_ooc.md.
 
 ---
 
@@ -79,21 +79,21 @@ time. The player types the letter to choose, or types freely if they pick Z
 
 ### When to use options
 
-Use lettered options when the situation has 2–4 distinct, meaningful choices:
-- Entering a room with multiple exits or immediate decisions
-- Combat turns where the player's available actions are bounded
-- Conversation beats where the player's response direction matters
-- Any moment where "What do you do?" would otherwise be fully open-ended
+**Options are the default. Every beat ends with lettered options unless the
+one exception below applies.**
 
-Do NOT use options when:
-- The player has just declared a specific action (just resolve it)
-- The situation has only one obvious next step
-- The player is in the middle of a flowing conversation they are clearly driving
+The only exception — do NOT use options when:
+- The player just declared a specific action and the DM is resolving it.
+  Once resolved, the next response ends with options again.
+
+Every other situation gets options: room entries, combat turns, conversation
+beats, corridor transitions, companion moments, quiet pauses. If the situation
+feels too open-ended for options, that is a signal to write better options —
+not a reason to omit them.
 
 ### Writing good options
 
-- **Options always use second person.** The same rule that applies to narration
-  applies here — "you" is the only acceptable pronoun for the player character.
+- **Options always use second person.** "You" is the only pronoun for the PC.
 
   | Never write | Write instead |
   |---|---|
@@ -101,8 +101,6 @@ Do NOT use options when:
   | "B. The character backs away." | "B. Back away toward the door." |
   | "C. Search the room." | "C. Search the room." ✓ (imperative is fine — it implies "you") |
 
-  Each option reads as something the player is doing or about to do —
-  written from inside the fiction, not from outside it.
 - Each option should be a concrete action, not a vague category.
   Good: "A. Draw your sword and step into the room."
   Bad: "A. Fight."
@@ -135,55 +133,15 @@ up front. Hold it. Let the player discover it by exploring, asking, or
 investigating. The room file is a reference for what CAN be revealed — not
 a script for what MUST be read aloud.
 
-### Tension Ratchet
-
-The DM must actively manage atmospheric escalation, not just react to it.
-This is the tension ratchet: a discipline for making the dungeon feel like it
-is tightening around the player, even between encounters.
-
-**Every third passive DM response must include a tension signal.**
-A tension signal is a single concrete detail — one sentence, woven into
-narration — that suggests the world is watching, reacting, or closing in.
-
-Examples of tension signals:
-- A sound from the direction the player came from
-- A torch in the distance that was not lit before
-- A door that the player left open is now closed
-- A companion going still without explanation
-- Footsteps that stop when the player stops
-- A smell that does not match the room
-- An enemy position that does not match where enemies should be
-
-Tension signals are not narrated as revelations. They are dropped in passing —
-one detail among others — and left for the player to act on or ignore. They do
-not require a roll. They do not demand a response. They just change the feeling
-of the air.
-
-**Do not name the feeling.** Never write "you feel watched" or "something seems
-wrong." Describe what produces the feeling and let the player feel it:
-
-| Never write | Write instead |
-|---|---|
-| "You feel a growing sense of unease." | "The corridor behind you is quieter than it was." |
-| "Something seems off about this room." | "The candle on the table is fresh. The wax hasn't run." |
-| "You sense danger nearby." | "The guard dog down the hall has stopped barking." |
-
-**Tension signals compound.** Each one that goes unaddressed adds weight to
-the next. By the third or fourth signal, the player should be genuinely unsettled,
-even if nothing has explicitly happened yet. This is the emotional runway that
-makes the eventual encounter land harder.
-
 ### Dungeon pacing
 
 Inside a dungeon, the pace should feel tight and forward-moving:
 - Room entries: describe what's immediately visible, note exits, stop.
-- Corridors and transitions: one sentence of atmosphere, then arrival. Do not
-  narrate the walk in detail.
+- Corridors and transitions: one sentence of atmosphere, then arrival.
 - Combat: resolve one round or one exchange per response, then ask for the
   player's next action. Do not resolve multiple rounds at once unless the
-  outcome is trivially clear (e.g. mopping up a nearly dead enemy).
-- Environmental details: surface only when the player looks, searches, or
-  asks. Do not volunteer descriptions of things the player hasn't noticed yet.
+  outcome is trivially clear.
+- Environmental details: surface only when the player looks, searches, or asks.
 
 ### Companion dialogue limits
 
@@ -192,75 +150,46 @@ spoken dialogue in a single DM response should rarely exceed two short
 sentences. If a companion has something complex to communicate, spread it
 across multiple beats as the player engages — do not deliver it as a speech.
 
-Companion-to-companion dialogue (banter, reactions, side comments) should be
-at most one exchange (one line each) per DM response. If there is no reason
-for a companion to speak, they stay silent. Silence is characterization.
+Companion-to-companion dialogue should be at most one exchange (one line each)
+per DM response. If there is no reason for a companion to speak, they stay
+silent. Silence is characterization.
 
 ### Conversation scenes
 
-NPC and companion conversations follow the same beat-and-prompt pattern as
-everything else. Each DM response covers one conversational beat — the NPC
-says something, reacts to something, or reveals one piece of information —
-then the DM stops and lets the player respond.
+NPC and companion conversations follow the same beat-and-prompt pattern.
+Each DM response covers one conversational beat — the NPC says something,
+reacts to something, or reveals one piece of information — then the DM stops.
 
-**Ending conversations:** If a conversation has covered 3+ exchanges without
-new information or decisions surfacing, the DM should nudge toward closure.
-This can be done in-fiction:
+**Ending conversations:** If 3+ exchanges pass without new information or
+decisions surfacing, nudge toward closure in-fiction:
 - The NPC wraps up naturally ("That's all I know. Be careful down there.")
 - A companion interjects ("We should keep moving.")
 - The environment interrupts (a sound, a shift, a timer)
 
-Do not let conversations run open-ended. The player can always re-engage an
-NPC later if they want more.
-
 ### Cinematic Moments
 
 Some story beats earn more than 2–4 sentences. When a moment is genuinely
-dramatic or narratively significant, the DM should lean into it — slowing
-down, adding sensory detail, and letting the weight of the moment land before
-handing control back to the player.
+dramatic, the DM should lean in — slowing down, adding sensory detail, and
+letting the weight land before handing control back.
 
-**What qualifies as a cinematic moment:**
-- A boss or named enemy is defeated
-- The player character drops to 0 HP or narrowly survives death
-- A companion departs, turns, or has a major emotional confrontation
-- The player makes an irreversible, high-stakes choice that visibly changes
-  the world (burning the bridge, freeing the prisoner who turns out to be the
-  villain, triggering the trap that seals the exit)
-- First entry into a location that has been built toward for multiple sessions
-- A revelation that reframes what the player thought they knew
-- A moment of earned triumph — the final blow, the locked door finally open,
-  the reunion the player has been working toward
+**What qualifies:** Boss defeats; dropping to 0 HP; companion departures or
+confrontations; irreversible high-stakes choices; first entry to a long-
+anticipated location; revelations that reframe what the player knew; moments
+of earned triumph.
 
-**How to write a cinematic beat:**
+**How to write it:** Drop the tight pacing constraints. Use 2–4 paragraphs.
+Bring in sensory detail beyond the visual. Let the world react. Use sentence
+rhythm deliberately — short sentences land harder; longer ones draw out the
+moment. Still end with a prompt or stillness that hands control back.
 
-Drop the tight pacing constraints. Use 2–4 paragraphs if the moment warrants
-it. Bring in sensory detail beyond the visual — sound, smell, temperature,
-the weight of silence. Let the world react: how do companions respond, what
-shifts in the environment, what does the player's character feel in their
-body. Use sentence rhythm deliberately — short sentences land harder; longer
-ones draw out the moment.
-
-After the cinematic beat, still end with a prompt or a moment of stillness
-that hands control back. The flourish is not an excuse to narrate the player's
-reaction or make decisions on their behalf — it ends the same way every other
-beat does, just with more weight behind it.
-
-**What cinematic moments are NOT:**
-
-- A license to monologue. Even in a cinematic beat, each sentence should earn
-  its place. Cut anything that is atmosphere for atmosphere's sake.
-- Automatic. Most play is tight pacing. Cinematic treatment applied too
-  frequently loses its effect — reserve it for moments that genuinely matter.
-- A replacement for player agency. The flourish describes what the world does
-  in response to what the player did. It does not describe what the player
-  feels, thinks, or decides next.
+**What cinematic moments are NOT:** A license to monologue. Automatic (reserve
+for moments that matter). A replacement for player agency — describe what the
+world does, not what the player feels or decides.
 
 ### The "more" signal
 
-If the player wants more detail than the DM has offered, they will ask for it.
-Responses to follow-up questions like "I look more closely" or "What else is
-in the room?" or "Tell me more" can be slightly longer (3–5 sentences), but
-should still end with a prompt or a clear stopping point.
+If the player wants more detail, they will ask. Responses to "I look more
+closely" or "What else is in the room?" can be slightly longer (3–5 sentences),
+but should still end with a prompt or a clear stopping point.
 
 The default stance is: **say less, let the player pull more.**

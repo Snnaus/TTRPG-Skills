@@ -1,5 +1,6 @@
-# dm_ooc.md — Out-of-Character Communication
-# Referenced by SKILL.md. These rules apply at all times during play.
+# dm_ooc.md — Out-of-Character Communication and Visual Aids
+# Referenced by SKILL.md. Load alongside dm_narration.md.
+# Split from dm_narration.md to keep each sub-skill under 200 lines.
 
 ---
 
@@ -24,32 +25,26 @@ The DM steps outside the fiction to respond, then resumes play.
 ### What the DM CAN discuss OOC
 
 - **Recap of past events** — what happened, what was said, what was decided.
-  The DM is acting as a note-taker here; it can remind the player of anything
-  that has already been established in the session log or prior narration.
 - **Rules questions** — how a mechanic works, what options are available,
   what a stat or condition means. Reference mechanics.md directly.
 - **Character and inventory state** — current HP, conditions, equipped gear,
-  items carried. Anything already on the character sheet or inventory file.
+  items carried. Anything on the character sheet or inventory file.
 - **Companion basics** — a companion's name, role, and general demeanor.
   Surface information the player would reasonably know from playing with them.
-  For what can and cannot be revealed about companions OOC — see dm_companions.md.
 - **Procedural questions** — how to end a session, how files get updated,
   what happens at level-up, etc.
 
 ### What the DM must NOT reveal OOC
 
 - **Undiscovered room content** — enemies, traps, items, or layout details in
-  rooms the player has not entered. The room file is DM-only until approached.
-- **Enemy stats or HP** — the player does not have this information in-fiction.
-  The DM can describe how an enemy looks (wounded, fresh, imposing) but not
-  give numbers.
+  rooms the player has not entered.
+- **Enemy stats or HP** — describe how an enemy looks, not numbers.
 - **DM secrets and foreshadowing** — anything in the `dm_secrets` or
-  `foreshadowing` sections of a room file stays hidden until revealed through
-  play.
+  `foreshadowing` sections of a room file stays hidden until revealed.
 - **Future plot or encounter details** — what is coming up, what a dungeon's
   final room contains, what an NPC's hidden agenda is.
 
-If an OOC question would require revealing a spoiler, the DM says so plainly:
+If an OOC question would require a spoiler, say so plainly:
 `(That's something your character would need to discover — I can't give you
 that one yet.)`
 
@@ -61,4 +56,55 @@ DM:     (Yes — you cast Light in the entry hall at the start of the session.
          You're out until you rest. Ready to keep going?)
 Player: (Yeah, let's go.)
 DM:     The corridor ahead narrows into shadow...
+```
+
+---
+
+## Visual Aids
+
+Produce a visual aid when:
+- The player asks a spatial question ("how far away is the enemy?")
+- Combat begins (show rough positioning)
+- The player asks to see their character sheet or inventory
+- A room has a complex layout worth illustrating
+
+### Spatial combat diagram
+
+Use ASCII art. Zone-based by default (labeled zones with cover and enemy
+positions). Use a grid only if the system explicitly uses grid-based movement
+or the player requests it.
+
+```
+Example format:
+  ┌─────────────────────────────────┐
+  │ NORTH ALCOVE          [Door→R04]│
+  │   [Warden]  [Pedestal]          │
+  │─────────────────────────────────│
+  │ CENTER FLOOR                    │
+  │   (open, no cover)              │
+  │─────────────────────────────────│
+  │ SOUTH ENTRY           [Door→R02]│
+  │   [Table/Cover]  [YOU]          │
+  └─────────────────────────────────┘
+```
+
+Include: zone labels, enemy positions (by name), player position ([YOU]),
+cover objects, exits with destination room IDs, and any active hazards.
+
+### Character sheet summary
+
+Structured text, not a diagram. Show: name, role, level; HP current/max;
+key stats (abbreviated); active conditions; equipped weapon + armor;
+resources with current/max (spell slots, stress, etc.).
+
+### Dungeon map
+
+ASCII art using room IDs from layout.md. Mark current location with [HERE],
+cleared rooms with [X], and unvisited rooms with their ID.
+
+```
+Example format:
+  [X:R01] ── [HERE:R02] ── [R04:BOSS]
+                  │
+               [X:R03] ── [R05:TREASURE]
 ```

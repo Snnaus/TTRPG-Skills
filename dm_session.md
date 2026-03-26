@@ -1,5 +1,7 @@
 # dm_session.md — Session Lifecycle
 # Referenced by SKILL.md. Load at session start alongside player files.
+# All file paths below are relative to the active `{Game Name} Rules/` folder
+# unless otherwise noted. See SKILL.md for the full folder structure.
 
 ---
 
@@ -19,18 +21,6 @@ The DM reads this context and performs a **state validation check**:
   ended at 22/30. Which is correct?"
 - Check that any items_gained from last session appear in inventory.md and any
   items_lost have been removed.
-
-**Tension state restoration:**
-Read `dungeon_state` from the most recent session-log entry and restore:
-- `tension_track` → set the Tension Track to this level before the first response
-- `faction_alert` → restore the faction's alert state; apply any behavioral
-  changes to unvisited rooms that this alert level implies (see dm_dungeon.md →
-  Faction Alert States)
-- `passive_beat_count` → restore the counter; the session continues mid-count,
-  not from zero
-
-If `dungeon_state` is absent, infer from session log context per the rules in
-dm_tension.md → Session Persistence.
 
 After validation, produce a brief recap of where we left off, then ask:
 "Where would you like to begin?"
@@ -56,21 +46,6 @@ mid_session_notes present in the session-log but no closing summary.
    recently listed is current.
 3. Read the character-sheet.md and inventory.md files as authoritative
    current state (they are maintained continuously during play).
-
-**Tension state reconstruction:**
-Read `dungeon_state` from the Running Tracker of the most recent session-log entry.
-Then scan mid_session_notes deltas in order, applying any tension track or alert
-state changes noted there on top of the base dungeon_state values. The last
-delta entry wins. This reconstructs the exact tension state at the moment the
-session was interrupted.
-
-Example reconstruction:
-```
-dungeon_state (session start): tension_track: 2, faction_alert: unaware, passive_beat_count: 1
-mid_session_notes delta 1: "Tension Track: 2 → 3. Faction alert: unaware → suspicious."
-mid_session_notes delta 2: "Passive beat counter reset (threat signal delivered)."
-→ Reconstructed state: tension_track: 3, faction_alert: suspicious, passive_beat_count: 0
-```
 
 **Run a state validation check** (same as Session Start):
 - Compare character-sheet.md HP and resources against the last
@@ -102,22 +77,25 @@ Each DM response should contain ONE of these:
 - A combat turn resolution (one round or one meaningful exchange)
 - A companion moment (a reaction, a short line of dialogue, a gesture)
 
-After delivering the beat, the DM ends with either:
-- An implicit prompt (the situation is clear and the player knows they can act)
-- A direct question with lettered options (see dm_narration.md → Player Prompts)
+After delivering the beat, the DM ends with lettered options
+(see dm_narration.md → Player Prompts). Options are mandatory after every
+beat — the only exception is when the player just declared a specific action
+and the DM is mid-resolution.
 
 The DM does NOT:
-- Chain multiple beats into a single response (e.g. entering a room AND
-  triggering a conversation AND revealing a threat — pick one, let the
-  player react, then continue)
+- Chain multiple beats into a single response
 - Narrate player actions or decisions the player has not stated
 - Continue a scene past the point where the player has a meaningful choice
 
 See dm_narration.md → Pacing Rules for hard length limits and dungeon-specific guidance.
-
 For skill checks, dice rolling, and combat confirmation — see dm_resolution.md.
 For file maintenance during play — see dm_files.md.
-For tension escalation and forced encounters — see dm_tension.md.
+
+**Undefined rules during play:**
+If the player attempts an action that requires a mechanic not defined in
+mechanics.md, or if a situation arises where the rules are ambiguous, follow
+dm_setup.md → Undefined Rules Protocol. Do not invent rules silently — surface
+the gap, resolve it with the player, and record the ruling.
 
 ---
 
@@ -129,9 +107,9 @@ continuously (see dm_files.md). Session end is a reconciliation and narrative
 summary step, not a data-entry step.
 
 **Reconciliation — verify nothing was missed:**
-- Cross-check `{Game Name} Rules/player/character-sheet.md` HP, XP, conditions, and resources
+- Cross-check `player/character-sheet.md` HP, XP, conditions, and resources
   against the mid_session_notes deltas. Correct any discrepancy silently.
-- Cross-check `{Game Name} Rules/player/inventory.md` against all items_gained and items_lost
+- Cross-check `player/inventory.md` against all items_gained and items_lost
   entries in mid_session_notes. Correct any discrepancy silently.
 - Confirm all companion character sheets and inventories are current.
 - Confirm `layout.md` statuses are correct for all rooms visited this session
@@ -158,22 +136,8 @@ Update the Running Tracker section of session-log.md:
 - Open hooks (add new, remove resolved)
 - Significant NPCs (add, update status, or remove)
 - World-state changes
-- **dungeon_state** — write the final tension state block:
-
-```yaml
-dungeon_state:
-  tension_track: [current level]
-  faction_alert: [current alert level]
-  passive_beat_count: [current count]
-  notes: >
-    [One sentence summary of what drove the current state, if notable. Omit if nothing significant.]
-```
-
-This block is the authoritative source for the next session's tension restoration.
-Do not omit it even if nothing changed — a confirmed baseline is more useful than
-an absent one.
 
 **World log:**
 If any events this session have consequences beyond the current dungeon
 (faction alerts, world-state shifts, cross-location NPCs), add an entry
-to `{Game Name} Rules/campaign/world-log.md`.
+to `campaign/world-log.md`.
